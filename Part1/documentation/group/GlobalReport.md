@@ -58,11 +58,11 @@ Clearly identify each AI system used, specify which parts of your work involved 
 ## 2.1 Team identification
 
 | Code | Name             | Student # | GitHub                |
-|------|------------------|-----------|-----------------------|
+| ---- | ---------------- | --------- | --------------------- |
 | S1   | Guilherme Melo   | 1211008   | @GuilhermeMelo1211008 |
-| S2   | Miguel Póvoas    | 1201716   | @                     |
+| S2   | Miguel Póvoas    | 1201716   | @mpoboas              |
 | S3   | Samuel Pinto     | 1221316   | @samuelpinto04        |
-| S4   | Vicente Teixeira | 1210974   | @                     |
+| S4   | Vicente Teixeira | 1210974   | @VIC3N7E              |
 
 ---
 
