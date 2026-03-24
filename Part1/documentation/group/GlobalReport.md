@@ -58,9 +58,9 @@ Clearly identify each AI system used, specify which parts of your work involved 
 ## 2.1 Team identification
 
 | Code | Name             | Student # | GitHub                |
-| ---- | ---------------- | --------- | --------------------- |
-| S1   | Guilherme Melo   | 1211008   | @GuilhermeMelo1211008 |
-| S2   | Miguel Póvoas    | 1201716   | @mpoboas              |
+| ---- |------------------| --------- |-----------------------|
+| S1   | Miguel Póvoas     | 1201716   | @mpoboas              |
+| S2   | Guilherme Melo   | 1211008   | @GuilhermeMelo1211008 |
 | S3   | Samuel Pinto     | 1221316   | @samuelpinto04        |
 | S4   | Vicente Teixeira | 1210974   | @VIC3N7E              |
 
@@ -68,22 +68,22 @@ Clearly identify each AI system used, specify which parts of your work involved 
 
 ## 2.2 RACI overview
 
-| Work item            | Responsible | Accountable | Consulted | Informed |
-|----------------------|-------------|-------------|-----------|----------|
-| Theme selection      | S1          | S1          | S3        | S2, S4   |
-| Report Creation      | S3          | S3          | S1        | S2, S4   |
+| Work item       | Responsible | Accountable | Consulted | Informed |
+|-----------------|-------------|-------------|-----------|----------|
+| Theme selection | S2          | S2          | S3        | S1, S4   |
+| Report Creation | S3          | S3          | S2        | S1, S4   |
+| Ownership map   | S3          | S3          | S1, S2    | S4       |
 
 ---
 
 ## 2.3 Ownership map
 
-| Student | Hugo Pages | Twine Story | Issues | Commits |
-|--------|-----------|------------|--------|--------|
-| S1 | /content/en/docs/profiles/ | /stories/profiles-quiz | #23, #31 | a1b2c3 |
-| S2 | /content/en/docs/lrs/ | /stories/lrs-setup | #18, #22 | 0f1e2d |
-| S3 | /content/en/docs/xapi/ | /stories/xapi-journey | #27, #29 | 99aa77 |
-| S4 | /content/en/docs/security/ | /stories/security-check | #30, #35 | 112233 |
-
+| Student | Hugo Pages | Twine Story | Focus |
+|--------|-----------|------------|------|
+| S1 | /docs/xapi/basics | /stories/xapi-basics | Fundamentals |
+| S2 | /docs/xapi/structure | /stories/xapi-structure | Core structure |
+| S3 | /docs/xapi/optional | /stories/xapi-optional | Optional fields |
+| S4 | /docs/xapi/validation | /stories/xapi-validation | Validation |
 ---
 
 # 3. Tools and technologies
@@ -98,9 +98,9 @@ Clearly identify each AI system used, specify which parts of your work involved 
 
 # 4. General conventions
 
-- Commit messages follow a standard format
-- Naming conventions defined
-- Folder structure agreed
+- Commit messages must follow the format of : #Issue number followed by a short message;
+- Only a global README will be used, the rest of the documentation must be in the global and individual markdown reports;
+- Folder structure must be /content/en/docs/xapi/THEME/ for english pages, /content/pt/docs/xapi/THEME/ for portuguese pages and /static/stories/xapi-THEME/ for twine stories.
 
 ---
 
