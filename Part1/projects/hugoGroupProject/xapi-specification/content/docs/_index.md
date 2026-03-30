@@ -1,6 +1,6 @@
 ---
 title: "Docs"
-description: "Browse guides and reference documentation that explain how to use this site’s features, configure Doks, and publish clear, user-focused content."
+description: "Explore the xAPI ecosystem through detailed fundamentals, guides, and reference documentation designed for modern learning systems."
 summary: ""
 date: 2023-09-07T16:12:03+02:00
 lastmod: 2023-09-07T16:12:03+02:00
@@ -14,7 +14,7 @@ params:
     canonical: "" # custom canonical URL (optional)
     robots: "" # custom robot tags (optional)
   section:
-    title: "Documentation"
+    title: "xAPI"
     iconName: "book"
-    startUrl: "/docs/guides/example-guide/"
+    startUrl: "/docs/xapi/fundamentals/"
 ---
