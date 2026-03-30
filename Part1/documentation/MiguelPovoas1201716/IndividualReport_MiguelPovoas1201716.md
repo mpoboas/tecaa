@@ -61,14 +61,13 @@ Clearly identify each AI system used, specify which parts of your work involved 
 ## 1.2 Assigned scope (traceability)
 
 - **Owned Hugo pages (EN/PT):**  
-  `/content/en/docs/<topic>/`  
-  `/content/pt/docs/<topico>/`
+  `/content/xapi/fundamentals.md`
 
 - **Twine story (standalone):**  
   `/stories/<name>/index.html` (public URL)
 
-- **Related issues:** #23, #31
-- **Key commits:** a1b2c3, d4e5f6
+- **Related issues:** #1, #2, #3, #13, #14, #15
+- **Key commits:** 
 
 Cross-reference: Global report – Work distribution (RACI) and Ownership map.
 
