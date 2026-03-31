@@ -15,9 +15,9 @@ Version 2, 2026-03-19
 
 ## Revision History
 
-| Revision | Date       | Author(s)    | Description            |
-|----------|------------|--------------|------------------------|
-| 1        | 2026-03-17 | Samuel Pinto | Initial version        |
+| Revision | Date       | Author(s)    | Description     |
+| -------- | ---------- | ------------ | --------------- |
+| 1        | 2026-03-17 | Samuel Pinto | Initial version |
 ---
 
 ## Contents
@@ -58,8 +58,8 @@ Clearly identify each AI system used, specify which parts of your work involved 
 ## 2.1 Team identification
 
 | Code | Name             | Student # | GitHub                |
-| ---- |------------------| --------- |-----------------------|
-| S1   | Miguel Póvoas     | 1201716   | @mpoboas              |
+| ---- | ---------------- | --------- | --------------------- |
+| S1   | Miguel Póvoas    | 1201716   | @mpoboas              |
 | S2   | Guilherme Melo   | 1211008   | @GuilhermeMelo1211008 |
 | S3   | Samuel Pinto     | 1221316   | @samuelpinto04        |
 | S4   | Vicente Teixeira | 1210974   | @VIC3N7E              |
@@ -69,7 +69,7 @@ Clearly identify each AI system used, specify which parts of your work involved 
 ## 2.2 RACI overview
 
 | Work item       | Responsible | Accountable | Consulted | Informed |
-|-----------------|-------------|-------------|-----------|----------|
+| --------------- | ----------- | ----------- | --------- | -------- |
 | Theme selection | S2          | S2          | S3        | S1, S4   |
 | Report Creation | S3          | S3          | S2        | S1, S4   |
 | Ownership map   | S3          | S3          | S1, S2    | S4       |
@@ -78,21 +78,21 @@ Clearly identify each AI system used, specify which parts of your work involved 
 
 ## 2.3 Ownership map
 
-| Student | Hugo Pages | Twine Story | Focus |
-|--------|-----------|------------|------|
-| S1 | /docs/xapi/basics | /stories/xapi-basics | Fundamentals |
-| S2 | /docs/xapi/structure | /stories/xapi-structure | Core structure |
-| S3 | /docs/xapi/optional | /stories/xapi-optional | Optional fields |
-| S4 | /docs/xapi/validation | /stories/xapi-validation | Validation |
+| Student | Hugo Pages            | Twine Story              | Focus           |
+| ------- | --------------------- | ------------------------ | --------------- |
+| S1      | /docs/xapi/basics     | /stories/xapi-basics     | Fundamentals    |
+| S2      | /docs/xapi/structure  | /stories/xapi-structure  | Core structure  |
+| S3      | /docs/xapi/optional   | /stories/xapi-optional   | Optional fields |
+| S4      | /docs/xapi/validation | /stories/xapi-validation | Validation      |
 ---
 
 # 3. Tools and technologies
 
-| Tool | Version | License | Reason |
-|------|--------|--------|--------|
-| Hugo | 0.xx   | Apache-2.0 | Static site |
-| Twine | 2.x   | GPL-3.0 | Story |
-| HAR Viewer | X | OSS | Debug |
+| Tool       | Version | License    | Reason      |
+| ---------- | ------- | ---------- | ----------- |
+| Hugo       | 0.xx    | Apache-2.0 | Static site |
+| Twine      | 2.x     | GPL-3.0    | Story       |
+| HAR Viewer | X       | OSS        | Debug       |
 
 ---
 
@@ -101,6 +101,7 @@ Clearly identify each AI system used, specify which parts of your work involved 
 - Commit messages must follow the format of : #Issue number followed by a short message;
 - Only a global README will be used, the rest of the documentation must be in the global and individual markdown reports;
 - Folder structure must be /content/en/docs/xapi/THEME/ for english pages, /content/pt/docs/xapi/THEME/ for portuguese pages and /static/stories/xapi-THEME/ for twine stories.
+- For individual folders and reports the following naming convention should be used: Student Name Number, e.g JohnDoe1234567
 
 ---
 
@@ -120,12 +121,12 @@ Explain features, deployment, and public URL.
 
 ## 5.5 Requirements Traceability Matrix
 
-| Requirement | Section | Evidence |
-|------------|--------|----------|
-| Deployment | Sec.5 | URL |
-| Security | Sec.6 | Repo |
-| Twine integration | Sec.6 | Repo |
-| Bilingual docs | Sec.5 | Repo |
+| Requirement       | Section | Evidence |
+| ----------------- | ------- | -------- |
+| Deployment        | Sec.5   | URL      |
+| Security          | Sec.6   | Repo     |
+| Twine integration | Sec.6   | Repo     |
+| Bilingual docs    | Sec.5   | Repo     |
 
 ---
 
