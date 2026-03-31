@@ -1,5 +1,5 @@
 ---
-title: "xAPI Fundamentals"
+title: "Fundamentals"
 description: "Core concepts of the xAPI specification, its purpose, and how it compares to SCORM."
 slug: "fundamentals"
 summary: ""
@@ -56,7 +56,7 @@ Together these components produce a human-readable record such as:
 
 Statements can also carry additional structured data such as scores, timestamps, and contextual information to provide a richer picture of the learning event.
 
-> 📄 For a detailed breakdown of all mandatory and optional statement fields, see **xAPI Structure** *(coming soon)*.
+> 📄 For a detailed breakdown of all mandatory and optional statement fields, see [**Core Structure**]({{< relref "structure" >}}).
 
 ---
 
