@@ -110,7 +110,7 @@ xAPI allows tracking of **custom learning experiences** using a simple and adapt
 
 Systems can exchange data using shared standardised formats, enabling **integration across different platforms and technologies**.
 
-> 📄 For details on how IRIs and identifiers ensure interoperability, see **Validation & IRIs** *(coming soon)*.
+> 📄 For details on how IRIs and identifiers ensure interoperability, see [**Validation & IRIs**]({{< relref "validation" >}}).
 
 ### Tracking Beyond the LMS
 
