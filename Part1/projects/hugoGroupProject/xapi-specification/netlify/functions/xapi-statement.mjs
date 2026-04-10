@@ -6,11 +6,14 @@
 export const handler = async (event) => {
   const cors = {
     "Access-Control-Allow-Origin": "*",
-    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Headers":
+      "Content-Type, Accept, Authorization, X-Requested-With",
     "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Access-Control-Max-Age": "7200",
   };
 
   if (event.httpMethod === "OPTIONS") {
+    // Preflight: 204 and empty body is correct. The actual API response is the following POST.
     return { statusCode: 204, headers: cors, body: "" };
   }
 
