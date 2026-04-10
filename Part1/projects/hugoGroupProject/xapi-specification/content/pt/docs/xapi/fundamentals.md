@@ -40,19 +40,19 @@ Esta flexibilidade torna-o adequado a ambientes de aprendizagem modernos e distr
 
 ### Declarações (statements)
 
-O xAPI regista atividades de aprendizagem através de **declarações (*statements*)**, que são objetos de dados estruturados que descrevem um evento de aprendizagem. Cada declaração segue um formato gramatical simples:
+O xAPI regista atividades de aprendizagem através de **declarações (_statements_)**, que são objetos de dados estruturados que descrevem um evento de aprendizagem. Cada declaração segue um formato gramatical simples:
 
 > **Ator – Verbo – Objeto**
 
-| Componente | Descrição | Exemplo |
-| :--------- | :-------- | :------ |
-| **Ator** | Quem realizou a ação | `"Miguel"` |
-| **Verbo** | A ação realizada | `"concluiu"` |
-| **Objeto** | O alvo da ação | `"Curso de fundamentos xAPI"` |
+| Componente | Descrição            | Exemplo                       |
+| :--------- | :------------------- | :---------------------------- |
+| **Ator**   | Quem realizou a ação | `"Miguel"`                    |
+| **Verbo**  | A ação realizada     | `"concluiu"`                  |
+| **Objeto** | O alvo da ação       | `"Curso de fundamentos xAPI"` |
 
 Em conjunto, estes componentes produzem um registo legível por humanos, tal como:
 
-> *"Miguel concluiu o curso de fundamentos xAPI."*
+> _"Miguel concluiu o curso de fundamentos xAPI."_
 
 As declarações podem ainda transportar dados estruturados adicionais, como pontuações, carimbos de data/hora e informação contextual, para oferecer uma visão mais rica do evento de aprendizagem.
 
@@ -140,29 +140,40 @@ Os registos de aprendizagem podem ser partilhados entre sistemas LRS, permitindo
 
 O SCORM é um padrão de eLearning amplamente adotado, focado na distribuição de conteúdo via LMS. Embora eficaz para a sua época, apresenta limitações significativas em ambientes de aprendizagem modernos e distribuídos.
 
-| Funcionalidade | SCORM | xAPI |
-|:---------------|:-----:|:----:|
-| Acompanhar conclusão | ✔ | ✔ |
-| Acompanhar tempo | ✔ | ✔ |
-| Acompanhar aprovação/reprovação | ✔ | ✔ |
-| Reportar uma única pontuação | ✔ | ✔ |
-| Reportar várias pontuações | | ✔ |
-| Resultados detalhados de testes | | ✔ |
-| Sem necessidade de LMS | | ✔ |
-| Sem necessidade de navegador Web | | ✔ |
-| Controlo total sobre o seu conteúdo | | ✔ |
-| Sem limitação entre domínios | | ✔ |
-| Utilizar aplicações móveis para aprender | | ✔ |
-| Transição de plataforma (ex.: computador para telemóvel) | | ✔ |
-| Acompanhar jogos sérios | | ✔ |
-| Acompanhar simulações | | ✔ |
-| Acompanhar aprendizagem informal | | ✔ |
-| Acompanhar desempenho no mundo real | | ✔ |
-| Acompanhar aprendizagem offline | | ✔ |
-| Acompanhar aprendizagem interativa | | ✔ |
-| Acompanhar aprendizagem adaptativa | | ✔ |
-| Acompanhar aprendizagem mista (*blended*) | | ✔ |
-| Acompanhar aprendizagem de longo prazo | | ✔ |
-| Acompanhar aprendizagem em equipa | | ✔ |
+| Funcionalidade                                           | SCORM | xAPI |
+| :------------------------------------------------------- | :---: | :--: |
+| Acompanhar conclusão                                     |   ✔   |  ✔   |
+| Acompanhar tempo                                         |   ✔   |  ✔   |
+| Acompanhar aprovação/reprovação                          |   ✔   |  ✔   |
+| Reportar uma única pontuação                             |   ✔   |  ✔   |
+| Reportar várias pontuações                               |       |  ✔   |
+| Resultados detalhados de testes                          |       |  ✔   |
+| Sem necessidade de LMS                                   |       |  ✔   |
+| Sem necessidade de navegador Web                         |       |  ✔   |
+| Controlo total sobre o seu conteúdo                      |       |  ✔   |
+| Sem limitação entre domínios                             |       |  ✔   |
+| Utilizar aplicações móveis para aprender                 |       |  ✔   |
+| Transição de plataforma (ex.: computador para telemóvel) |       |  ✔   |
+| Acompanhar jogos sérios                                  |       |  ✔   |
+| Acompanhar simulações                                    |       |  ✔   |
+| Acompanhar aprendizagem informal                         |       |  ✔   |
+| Acompanhar desempenho no mundo real                      |       |  ✔   |
+| Acompanhar aprendizagem offline                          |       |  ✔   |
+| Acompanhar aprendizagem interativa                       |       |  ✔   |
+| Acompanhar aprendizagem adaptativa                       |       |  ✔   |
+| Acompanhar aprendizagem mista (_blended_)                |       |  ✔   |
+| Acompanhar aprendizagem de longo prazo                   |       |  ✔   |
+| Acompanhar aprendizagem em equipa                        |       |  ✔   |
 
 O xAPI alarga o SCORM ao permitir um **acompanhamento mais amplo e detalhado das experiências de aprendizagem** em diferentes contextos, eliminando a dependência de um ambiente LMS baseado exclusivamente no navegador.
+
+---
+
+## Módulo interativo
+
+Segue-se um pequeno percurso interativo dos conceitos desta página.
+
+<iframe title="Módulo interativo xAPI Fundamentals" src="/stories/xapi-fundamentals/" width="100%" height="720" loading="lazy" style="display:block;max-width:100%;min-height:32rem;border:1px solid var(--bs-border-color, #dee2e6);border-radius:0.375rem"></iframe>
+
+[Abrir o módulo num separador completo](/stories/xapi-fundamentals/) se preferir.
+

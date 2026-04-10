@@ -14,19 +14,20 @@
   hugo build --gc --minify --baseURL "${URL}"
   """
 
+[functions]
+  directory = "netlify/functions"
+
 [dev]
   framework = "#custom"
-  command = "bun run dev"
+  # Use npm so `netlify dev` works without Bun (`bun run dev` fails if bun is not installed).
+  command = "npm run dev"
   targetPort = 1313
   port = 8888
   publish = "public"
   autoLaunch = false
 
-# Redirects and rewrites — https://docs.netlify.com/routing/redirects/#syntax-for-the-netlify-configuration-file
-[[redirects]]
-	from = "/*"
-	to = "/404/"
-	status = 404
+# Do not add a catch-all `/*` → 404 rule: it matches every URL and breaks the whole site (including `netlify dev`).
+# Hugo emits `404.html`; Netlify serves it automatically for missing paths.
 
 # Custom headers — https://docs.netlify.com/routing/headers/#syntax-for-the-netlify-configuration-file
 [[headers]]
@@ -43,3 +44,16 @@
     public,
     max-age=31536000'''
     Access-Control-Allow-Origin = "*"
+
+# Do not long-cache function responses (breaks CORS preflight / debugging; APIs are dynamic).
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Cache-Control = "no-store"
+
+# Twine (Harlowe) exports rely on inline <script> in passages; relax CSP only under static stories.
+[[headers]]
+  for = "/stories/**"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self' data:; img-src 'self' data: https:; manifest-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'"
+    X-Frame-Options = "SAMEORIGIN"

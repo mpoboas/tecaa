@@ -52,7 +52,7 @@ xAPI records learning activities using **statements**, which are structured data
 
 Together these components produce a human-readable record such as:
 
-> *"Miguel completed the xAPI Fundamentals course."*
+> _"Miguel completed the xAPI Fundamentals course."_
 
 Statements can also carry additional structured data such as scores, timestamps, and contextual information to provide a richer picture of the learning event.
 
@@ -140,29 +140,39 @@ Learning records can be shared between LRS systems, allowing learner data to mov
 
 SCORM is a widely adopted eLearning standard focused on LMS-based content delivery. While effective for its era, it has significant limitations in modern, distributed learning environments.
 
-| Feature | SCORM | xAPI |
-|:--------|:-----:|:----:|
-| Track completion | ✔ | ✔ |
-| Track time | ✔ | ✔ |
-| Track pass/fail | ✔ | ✔ |
-| Report a single score | ✔ | ✔ |
-| Report multiple scores | | ✔ |
-| Detailed test results | | ✔ |
-| No LMS required | | ✔ |
-| No internet browser required | | ✔ |
-| Keep complete control over your content | | ✔ |
-| No cross-domain limitation | | ✔ |
-| Use mobile apps for learning | | ✔ |
-| Platform transition (i.e. computer to mobile) | | ✔ |
-| Track serious games | | ✔ |
-| Track simulations | | ✔ |
-| Track informal learning | | ✔ |
-| Track real-world performance | | ✔ |
-| Track offline learning | | ✔ |
-| Track interactive learning | | ✔ |
-| Track adaptive learning | | ✔ |
-| Track blended learning | | ✔ |
-| Track long-term learning | | ✔ |
-| Track team-based learning | | ✔ |
+| Feature                                       | SCORM | xAPI |
+| :-------------------------------------------- | :---: | :--: |
+| Track completion                              |   ✔   |  ✔   |
+| Track time                                    |   ✔   |  ✔   |
+| Track pass/fail                               |   ✔   |  ✔   |
+| Report a single score                         |   ✔   |  ✔   |
+| Report multiple scores                        |       |  ✔   |
+| Detailed test results                         |       |  ✔   |
+| No LMS required                               |       |  ✔   |
+| No internet browser required                  |       |  ✔   |
+| Keep complete control over your content       |       |  ✔   |
+| No cross-domain limitation                    |       |  ✔   |
+| Use mobile apps for learning                  |       |  ✔   |
+| Platform transition (i.e. computer to mobile) |       |  ✔   |
+| Track serious games                           |       |  ✔   |
+| Track simulations                             |       |  ✔   |
+| Track informal learning                       |       |  ✔   |
+| Track real-world performance                  |       |  ✔   |
+| Track offline learning                        |       |  ✔   |
+| Track interactive learning                    |       |  ✔   |
+| Track adaptive learning                       |       |  ✔   |
+| Track blended learning                        |       |  ✔   |
+| Track long-term learning                      |       |  ✔   |
+| Track team-based learning                     |       |  ✔   |
 
 xAPI expands on SCORM by enabling **broader, more detailed tracking of learning experiences** across different contexts, while removing the dependency on a browser-based LMS environment.
+
+---
+
+## Interactive module
+
+Below is a short interactive walkthrough of the ideas on this page.
+
+<iframe title="xAPI Fundamentals interactive module" src="/stories/xapi-fundamentals/" width="100%" height="720" loading="lazy" style="display:block;max-width:100%;min-height:32rem;border:1px solid var(--bs-border-color, #dee2e6);border-radius:0.375rem"></iframe>
+
+[Open the module in a full browser tab](/stories/xapi-fundamentals/) if you prefer.
