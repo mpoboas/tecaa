@@ -195,44 +195,12 @@ This analysis serves as evidence for the global report aggregation.
 
 ## 3.1 Technical description
 
-Describe:
-- branching logic (decisions)
-- variables (e.g., `$score`, `$visitedPassages`)
-- end passage with “completed”
-
----
 
 ## 3.2 xAPI statement map (evidence)
 
-| Action        | Expected Verb        | Fields Sent                         | Result |
-|--------------|--------------------|-------------------------------------|--------|
-| Story load   | initialized/launched | Actor, Verb, Object, Timestamp     | Pass   |
-| Choice       | experienced/responded | Actor, Verb, Object, Result       | Pass   |
-| End          | completed/scored    | Actor, Verb, Object, Result        | Pass   |
-
-Include LRS logs as evidence.
-
----
-
 ## 3.3 Security: client-side exposure tests
 
-| Test                         | Method                          | Result |
-|------------------------------|----------------------------------|--------|
-| Static search                | grep for credentials/endpoints   | Pass   |
-| Network capture (HAR)        | DevTools network logs            | Pass   |
-| Proxy usage                  | Requests via `/api/xapi`         | Pass   |
-
----
-
 ## 3.4 GQM approach
-
-Describe:
-- goal(s)
-- questions
-- metrics
-- results
-
----
 
 # 4. Other issues
 
