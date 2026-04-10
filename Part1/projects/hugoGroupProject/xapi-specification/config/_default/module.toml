@@ -7,10 +7,26 @@
 # the site. They allow for custom directory structures and integrating content
 # from different locations.
 
-## content
+## content — use sites.matrix (Hugo ≥ 0.153); `lang` on mounts is deprecated and breaks PT/EN routing
+## Doks guide: https://getdoks.org/docs/guides/i18n/ — Hugo migration: https://www.docsy.dev/blog/2026/hugo-0.152.0+/#lang-mount-deprecation
 [[mounts]]
-  source = "content"
+  source = "content/en"
   target = "content"
+  [mounts.sites.matrix]
+    languages = ["en"]
+
+[[mounts]]
+  source = "content/pt"
+  target = "content"
+  [mounts.sites.matrix]
+    languages = ["pt"]
+
+### English content fills missing Portuguese pages (same idea as Doks “fill in the gaps”)
+[[mounts]]
+  source = "content/en"
+  target = "content"
+  [mounts.sites.complements]
+    languages = ["pt"]
 
 ## data
 [[mounts]]

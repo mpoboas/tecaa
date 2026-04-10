@@ -1,0 +1,9 @@
+{{- /* Internal paths get the current language prefix (e.g. /pt/...); external URLs unchanged. */ -}}
+{{- $u := .url -}}
+{{- if strings.HasPrefix $u "http" -}}
+  {{- $u -}}
+{{- else if .abs -}}
+  {{- $u | relLangURL | absURL -}}
+{{- else -}}
+  {{- $u | relLangURL | relURL -}}
+{{- end -}}

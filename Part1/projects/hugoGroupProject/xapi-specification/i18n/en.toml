@@ -1,0 +1,26 @@
+[home_feature_update_title]
+other = "Update content"
+
+[home_feature_update_body]
+other = "Edit <code>content/en/_index.md</code> to see this page change."
+
+[home_feature_add_title]
+other = "Add new content"
+
+[home_feature_add_body]
+other = "Add Markdown files under <code>content/en/</code> (or <code>content/pt/</code>) to create new pages."
+
+[home_feature_config_title]
+other = "Configure your site"
+
+[home_feature_config_body]
+other = "Edit your config in <code>config/_default/params.toml</code>."
+
+[home_feature_read_title]
+other = "Read the docs"
+
+[home_feature_read_body]
+other = "Learn more in the <a href=\"https://getdoks.org/\">Docs</a>."
+
+[home_footer_cta_title]
+other = "Start building with Doks today"

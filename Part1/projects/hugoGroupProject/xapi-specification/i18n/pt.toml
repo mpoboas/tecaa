@@ -1,0 +1,32 @@
+[get_started]
+other = "Começar"
+
+["get-started"]
+other = "Começar"
+
+[home_feature_update_title]
+other = "Atualizar conteúdo"
+
+[home_feature_update_body]
+other = "Edite <code>content/pt/_index.md</code> (ou <code>content/en/_index.md</code> para inglês) para ver esta página mudar."
+
+[home_feature_add_title]
+other = "Adicionar conteúdo"
+
+[home_feature_add_body]
+other = "Adicione ficheiros Markdown em <code>content/pt/</code> ou <code>content/en/</code> para criar novas páginas."
+
+[home_feature_config_title]
+other = "Configurar o site"
+
+[home_feature_config_body]
+other = "Edite a configuração em <code>config/_default/params.toml</code>."
+
+[home_feature_read_title]
+other = "Ler a documentação"
+
+[home_feature_read_body]
+other = "Saiba mais na <a href=\"https://getdoks.org/\">documentação do Doks</a>."
+
+[home_footer_cta_title]
+other = "Comece a construir com o Doks hoje"

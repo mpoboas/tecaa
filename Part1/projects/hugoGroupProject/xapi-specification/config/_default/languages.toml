@@ -1,6 +1,10 @@
 [en]
-  languageName = "English"
   contentDir = "content/en"
+  disabled = false
+  languageCode = "en-US"
+  languageDirection = "ltr"
+  languageName = "English"
+  title = "xAPI Docs"
   weight = 10
   [en.params]
     languageISO = "EN"
@@ -9,8 +13,12 @@
     alertText = '<a class="alert-link stretched-link fw-normal" href="/blog/example-post/">Doks version 1.0 just shipped!</a>'
 
 [de]
-  languageName = "German"
   contentDir = "content/de"
+  disabled = false
+  languageCode = "de-DE"
+  languageDirection = "ltr"
+  languageName = "German"
+  title = "xAPI Docs"
   weight = 15
   [de.params]
     languageISO = "DE"
@@ -19,8 +27,12 @@
     alertText = 'Neue Version ist da! <a class="alert-link stretched-link" href="https://getdoks.org/blog/doks-v0.5/">Doks v0.5</a>'
 
 [nl]
-  languageName = "Nederlands"
   contentDir = "content/nl"
+  disabled = false
+  languageCode = "nl-NL"
+  languageDirection = "ltr"
+  languageName = "Nederlands"
+  title = "xAPI Docs"
   weight = 20
   [nl.params]
     languageISO = "NL"
@@ -30,3 +42,17 @@
     titleHome = "Doks thema"
     footer = 'Mogelijk gemaakt door <a href="https://www.netlify.com/">Netlify</a>, <a href="https://gohugo.io/">Hugo</a>, en <a href="https://getdoks.org/">Doks</a>'
     alertText = 'Introductie van het Doks-kinderthema, verschillende DX + UX-updates en meer! <a class="alert-link stretched-link" href="https://getdoks.org/blog/doks-v0.2/">Bekijk Doks v0.2</a>'
+
+[pt]
+  contentDir = "content/pt"
+  disabled = false
+  languageCode = "pt-PT"
+  languageDirection = "ltr"
+  languageName = "Português"
+  title = "xAPI Docs"
+  weight = 12
+  [pt.params]
+    languageISO = "PT"
+    languageTag = "pt-PT"
+    footer = 'Disponibilizado por <a class="text-muted" href="https://thulite.io/">Thulite</a>'
+    alertText = '<a class="alert-link stretched-link fw-normal" href="/pt/blog/example-post/">A versão 1.0 do Doks foi lançada!</a>'
