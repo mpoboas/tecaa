@@ -1,0 +1,25 @@
+path,slug,title,date,expiryDate,publishDate,draft,permalink,kind,section
+content/en/docs/xapi/fundamentals.md,fundamentals,Fundamentals,2026-03-24T22:36:00Z,0001-01-01T00:00:00Z,2026-03-24T22:36:00Z,false,/docs/xapi/fundamentals/,page,docs
+content/pt/docs/xapi/fundamentals.md,fundamentals,Fundamentos,2026-03-24T22:36:00Z,0001-01-01T00:00:00Z,2026-03-24T22:36:00Z,false,/pt/docs/xapi/fundamentals/,page,docs
+content/en/docs/xapi/structure.md,structure,Core Structure,2026-03-30T00:00:00Z,0001-01-01T00:00:00Z,2026-03-30T00:00:00Z,false,/docs/xapi/structure/,page,docs
+content/pt/docs/xapi/strucuture.md,structure,Estrutura Principal,2026-03-30T00:00:00Z,0001-01-01T00:00:00Z,2026-03-30T00:00:00Z,false,/pt/docs/xapi/structure/,page,docs
+content/en/docs/xapi/optional.md,optional-fields,Optional Fields,2026-04-07T00:00:00Z,0001-01-01T00:00:00Z,2026-04-07T00:00:00Z,false,/docs/xapi/optional-fields/,page,docs
+content/en/docs/xapi/validation.md,validation,Validation and IRIs,2026-04-10T00:00:00Z,0001-01-01T00:00:00Z,2026-04-10T00:00:00Z,false,/docs/xapi/validation/,page,docs
+content/en/blog/example/index.md,,Example Post,2026-02-16T16:31:32+01:00,0001-01-01T00:00:00Z,2026-02-16T16:31:32+01:00,false,/blog/example-post/,page,blog
+content/en/blog/_index.md,,Blog,2023-09-07T16:21:44+02:00,0001-01-01T00:00:00Z,2023-09-07T16:21:44+02:00,false,/blog/,section,blog
+content/en/docs/xapi/_index.md,,xAPI,2026-03-24T22:30:00Z,0001-01-01T00:00:00Z,2026-03-24T22:30:00Z,false,/docs/xapi/,section,docs
+content/pt/docs/xapi/_index.md,,xAPI,2026-03-24T22:30:00Z,0001-01-01T00:00:00Z,2026-03-24T22:30:00Z,false,/pt/docs/xapi/,section,docs
+content/en/docs/guides/_index.md,,Guides,2023-09-07T16:06:50+02:00,0001-01-01T00:00:00Z,2023-09-07T16:06:50+02:00,false,/docs/guides/,section,docs
+content/en/docs/guides/example.md,,Example Guide,2023-09-07T16:04:48+02:00,0001-01-01T00:00:00Z,2023-09-07T16:04:48+02:00,false,/docs/guides/example-guide/,page,docs
+content/en/docs/reference/_index.md,,Reference,2023-09-07T16:12:37+02:00,0001-01-01T00:00:00Z,2023-09-07T16:12:37+02:00,false,/docs/reference/,section,docs
+content/en/docs/reference/example.md,,Example Reference,2023-09-07T16:13:18+02:00,0001-01-01T00:00:00Z,2023-09-07T16:13:18+02:00,false,/docs/reference/example-reference/,page,docs
+content/en/docs/resources.md,,Resources,2024-02-27T09:30:56+01:00,0001-01-01T00:00:00Z,2024-02-27T09:30:56+01:00,false,/docs/resources/,page,docs
+content/en/docs/_index.md,,Docs,2023-09-07T16:12:03+02:00,0001-01-01T00:00:00Z,2023-09-07T16:12:03+02:00,false,/docs/,section,docs
+content/pt/docs/_index.md,,Documentação,2023-09-07T16:12:03+02:00,0001-01-01T00:00:00Z,2023-09-07T16:12:03+02:00,false,/pt/docs/,section,docs
+content/en/404.md,,Page not found,2026-02-17T13:06:19+01:00,0001-01-01T00:00:00Z,2026-02-17T13:06:19+01:00,false,/404/,page,
+content/en/contributors/_index.md,,Contributors,2026-02-17T13:05:08+01:00,0001-01-01T00:00:00Z,2026-02-17T13:05:08+01:00,false,/contributors/,taxonomy,contributors
+content/en/tags/_index.md,,Tags,2026-02-17T13:04:01+01:00,0001-01-01T00:00:00Z,2026-02-17T13:04:01+01:00,false,/tags/,taxonomy,tags
+content/en/categories/_index.md,,Categories,2026-02-17T13:03:14+01:00,0001-01-01T00:00:00Z,2026-02-17T13:03:14+01:00,false,/categories/,taxonomy,categories
+content/en/privacy.md,,Privacy Policy,2023-09-07T17:19:07+02:00,0001-01-01T00:00:00Z,2023-09-07T17:19:07+02:00,false,/privacy/,page,
+content/en/_index.md,,Experience API,2023-09-07T16:33:54+02:00,0001-01-01T00:00:00Z,2023-09-07T16:33:54+02:00,false,/,home,
+content/pt/_index.md,,Experience API,2023-09-07T16:33:54+02:00,0001-01-01T00:00:00Z,2023-09-07T16:33:54+02:00,false,/pt/,home,
