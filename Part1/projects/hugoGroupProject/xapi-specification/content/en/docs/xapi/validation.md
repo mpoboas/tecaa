@@ -108,3 +108,13 @@ Use this checklist before publishing statement-producing content:
 ```
 
 This statement satisfies mandatory fields, uses globally interpretable verb semantics, and carries result data needed for analytics.
+
+---
+
+## Interactive module
+
+Use the standalone interactive story below to review validation and IRI decisions while generating xAPI events.
+
+<iframe title="xAPI Validation interactive module" src="/stories/xapi-validation/" width="100%" height="720" loading="lazy" style="display:block;max-width:100%;min-height:32rem;border:1px solid var(--bs-border-color, #dee2e6);border-radius:0.375rem"></iframe>
+
+[Open the module in a full tab](/stories/xapi-validation/) if you prefer.

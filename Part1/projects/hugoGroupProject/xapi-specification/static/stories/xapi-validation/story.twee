@@ -1,0 +1,237 @@
+:: StoryTitle
+xAPI Validation and IRIs
+
+:: StoryData
+{
+  "ifid": "B33A7A33-0A55-4E74-B1A2-2C727F730974",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Start",
+  "zoom": 1
+}
+
+:: Story JavaScript [script]
+/* Part 1: POST only to Netlify proxy; this story keeps endpoint/credentials off client-side source. */
+(function () {
+  if (window.tecaaXapi) return;
+  window.tecaaXapi = {};
+  var PROXY_PATH = '/.netlify/functions/xapi-statement';
+  var sessionStart = null;
+  var actorId = localStorage.getItem('tecaa_actor') || ('anon-' + Math.random().toString(36).slice(2, 10));
+  localStorage.setItem('tecaa_actor', actorId);
+
+  window.tecaaXapi.markSessionStart = function () {
+    sessionStart = new Date();
+  };
+
+  window.tecaaXapi.isoDurationSinceSessionStart = function () {
+    if (!sessionStart) return 'PT0S';
+    var sec = Math.max(0, Math.floor((Date.now() - sessionStart.getTime()) / 1000));
+    return 'PT' + sec + 'S';
+  };
+
+  window.tecaaXapi.base = function (verbId, verbDisplay) {
+    return {
+      actor: {
+        name: actorId,
+        mbox: 'mailto:' + actorId + '@example.org'
+      },
+      verb: {
+        id: verbId,
+        display: { 'en-US': verbDisplay }
+      },
+      object: {
+        id: 'https://tecaa-group.example/xapi/validation/story',
+        definition: {
+          name: { 'en-US': 'xAPI Validation and IRIs (Twine)' }
+        }
+      },
+      timestamp: new Date().toISOString(),
+      version: '1.0.3'
+    };
+  };
+
+  window.tecaaXapi.send = function (statement) {
+    var origin = window.location.origin || '';
+    var fnOrigin = origin;
+    if (window.location.hostname === 'localhost' && window.location.port === '1313') {
+      fnOrigin = window.location.protocol + '//' + window.location.hostname + ':8888';
+    }
+    var url = fnOrigin + PROXY_PATH;
+    return fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(statement)
+    }).catch(function () {});
+  };
+})();
+
+:: Start
+(set: $score to 0)
+(set: $steps to 0)
+(set: $steps to $steps + 1)
+
+<script>
+if (window.tecaaXapi) {
+  window.tecaaXapi.markSessionStart();
+  window.tecaaXapi.send(
+    window.tecaaXapi.base(
+      'http://adlnet.gov/expapi/verbs/initialized',
+      'initialized'
+    )
+  );
+}
+</script>
+
+Welcome to **xAPI Validation and IRIs**.
+
+In this short module you will review:
+- mandatory xAPI fields
+- IRI quality criteria
+- one validation decision with feedback
+
+[[Begin->ValidationIntro]]
+
+:: ValidationIntro
+(set: $steps to $steps + 1)
+
+<script>
+if (window.tecaaXapi) {
+  window.tecaaXapi.send(
+    window.tecaaXapi.base(
+      'http://adlnet.gov/expapi/verbs/launched',
+      'launched'
+    )
+  );
+}
+</script>
+
+Validation keeps statements technically correct and interoperable.
+For this project, always confirm required fields and use stable absolute IRIs.
+
+[[Continue->ValidationChecks]]
+
+:: ValidationChecks
+(set: $steps to $steps + 1)
+
+<script>
+if (window.tecaaXapi) {
+  window.tecaaXapi.send(
+    window.tecaaXapi.base(
+      'http://adlnet.gov/expapi/verbs/experienced',
+      'experienced'
+    )
+  );
+}
+</script>
+
+Checklist before sending a statement:
+1. Required fields exist: `actor`, `verb`, `object`, `version`
+2. Actor identifier has valid structure
+3. Verb/object IDs are proper absolute IRIs
+4. Timestamp is present and valid ISO-8601
+
+[[Open quiz->QuizIRI]]
+
+:: QuizIRI
+(set: $steps to $steps + 1)
+
+Which option is the best **verb IRI** for completion?
+
+[[`completed`->QuizWrong]]
+[[`http://adlnet.gov/expapi/verbs/completed`->QuizRight]]
+
+:: QuizWrong
+(set: $steps to $steps + 1)
+
+<script>
+if (window.tecaaXapi) {
+  window.tecaaXapi.send(
+    Object.assign(
+      window.tecaaXapi.base(
+        'http://adlnet.gov/expapi/verbs/responded',
+        'responded'
+      ),
+      {
+        result: {
+          success: false,
+          completion: false,
+          response: 'completed'
+        }
+      }
+    )
+  );
+}
+</script>
+
+Not yet. `completed` alone is not globally unique and should not be used as a raw identifier.
+
+[[Try again->QuizIRI]]
+
+:: QuizRight
+(set: $steps to $steps + 1)
+(set: $score to $score + 1)
+
+<script>
+if (window.tecaaXapi) {
+  window.tecaaXapi.send(
+    Object.assign(
+      window.tecaaXapi.base(
+        'http://adlnet.gov/expapi/verbs/responded',
+        'responded'
+      ),
+      {
+        result: {
+          success: true,
+          completion: false,
+          response: 'http://adlnet.gov/expapi/verbs/completed'
+        }
+      }
+    )
+  );
+}
+</script>
+
+Correct. Standard IRIs improve cross-system interpretation.
+
+[[Finish module->End]]
+
+:: End
+(set: $steps to $steps + 1)
+(set: _success to $score >= 1)
+
+<script>
+if (window.tecaaXapi) {
+  var duration = window.tecaaXapi.isoDurationSinceSessionStart();
+  var success = true;
+  window.tecaaXapi.send(
+    Object.assign(
+      window.tecaaXapi.base(
+        'http://adlnet.gov/expapi/verbs/completed',
+        'completed'
+      ),
+      {
+        result: {
+          score: {
+            raw: 1,
+            min: 0,
+            max: 1,
+            scaled: 1
+          },
+          success: success,
+          completion: true,
+          duration: duration
+        }
+      }
+    )
+  );
+}
+</script>
+
+You completed the Validation/IRIs module.
+
+- Score: **(print: $score) / 1**
+- Steps visited: **(print: $steps)**
+- Proxy used: `/.netlify/functions/xapi-statement`
+
+[[Restart->Start]]
