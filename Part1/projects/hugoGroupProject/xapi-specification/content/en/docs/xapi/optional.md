@@ -38,7 +38,7 @@ The practical rule is simple: **include only what improves interpretation and an
 
 ---
 
-## 1) `result`
+## 1) Result
 
 The `result` field describes the **outcome of the action**.
 
@@ -65,7 +65,7 @@ Typical example:
 
 ---
 
-## 2) `context`
+## 2) Context
 
 The `context` field explains the **context of the action**: which course, module, session, or learning path it belongs to.
 
@@ -93,7 +93,7 @@ Simplified example:
 
 ---
 
-## 3) `timestamp`
+## 3) Timestamp
 
 `timestamp` indicates **when the event happened**.
 
@@ -115,7 +115,7 @@ Without `timestamp`, temporal precision is reduced and analysis becomes weaker.
 
 ---
 
-## 4) `authority`
+## 4) Authority
 
 `authority` identifies **who registered the statement** (usually a system, service, or authorized agent).
 
@@ -136,7 +136,7 @@ Example:
 - Environments where event-origin auditing is important
 - Scenarios with proxy or middleware-based statement delivery
 
-### When it may be unnecessary
+### When to avoid
 
 - Simple flows where the LRS already controls origin clearly
 
