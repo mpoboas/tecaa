@@ -83,11 +83,19 @@ Use policy in this work:
   - Repository path: `static/stories/xapi-optional/`
   - Public URL: `/stories/xapi-optional/`
 
+- **Evidence reports stored in `reports/`:**
+  - `fleschKincaidHugoReadabilityReport.pdf` — evidence that the Hugo optional-fields page is easy to read.
+  - `fleschKincaidTwineReadabilityReport.pdf` — evidence that the Twine story text is easy to read.
+  - `hugoListOutput.csv` — output from `hugo list`, used to confirm Hugo page listing and structure.
+  - `lrsRun.png` — screenshot proving that the Twine run sends statements to the LRS.
+  - `lrsRunHar.har` — HAR capture of the Twine runtime requests, used as security evidence.
+  - `twineStoryStatistics.pdf` — story statistics and summary evidence for the Twine quiz.
+
 - **Related issues:** #7, #8, #9, #13, #14, #15
 
 - **Key commits:**
   - `6819167` — `#7 Optional Fields small update, translation created`
-  - `2df2dc3` — `#13 #1 Portuguese language added to hugo. Fundamentals doc page created in pt.`
+  - `2df2dc3` — `#13 #1 Portuguese language added to hugo.`
   - `be94273` — `#9 Individual report creation`
 
 Cross-reference: Global report ownership map and RACI in [`../group/GlobalReport.md`](../group/GlobalReport.md), §2.2–§2.3.
@@ -138,15 +146,19 @@ This section applies **Goal 1** from the global report to my owned pages: Option
 
 ### Goal 1
 
-**Goal 1:** Analyse the Hugo documentation site for evaluation and improvement with respect to structural and functional quality, from the developer viewpoint.
+**Goal 1:** Analyse the Hugo documentation site for evaluation and improvement with respect to its **structural and functional quality** from the viewpoint of **developers**, in the context of future adoption of xAPI and LRS.
 
-| Question (operational) | Metric | Scale / interpretation | Tool(s) | Procedure (Optional EN/PT) | My collected value | Answer |
-| --- | --- | --- | --- | --- | --- | --- |
-| Is the documentation professionally written (grammar/style, voice, tone, cognitive load)? | Count of blocking issues + High/Med/Low notes | Count (0 = none) | Manual review | Read EN and PT optional pages end-to-end and note writing issues | **0 blocking issues**; no high-severity language issues detected | Yes. Writing is clear and consistent in both language variants. |
-| Is the site easy to navigate to this guide, with sensible TOC and working links (including EN/PT)? | TOC Y/N; link checks pass/fail | TOC present + links resolving | Front matter and markdown link inspection | Check front matter (`toc: true`) and internal links (`relref`) in both files | TOC configured in both pages; internal sibling links present; slug and section routing are coherent | Yes. Navigation metadata is correct and the page fits the xAPI section flow. |
-| Are technical descriptions accurate relative to xAPI scope? | Count of confirmed technical errors | Count (0 = none) | Peer comparison + source review | Cross-check claims against existing xAPI pages, the story export, and xAPI semantics | **0 confirmed errors** in the current review cycle | Yes. Content is technically coherent with optional-field semantics. |
-| Does the guide include necessary information for its theme and remain consistent with teammate layout? | Checklist: OK / needs improvement | Ordinal | Comparison with peer pages | Compare front matter, heading levels, examples, and section flow with `fundamentals` and `structure` pages | **OK** | Yes. Theme coverage and formatting are aligned with group documentation patterns. |
-| Are machine-readable labels/navigation aids used (`title`, `description`, slug, language consistency)? | Pass/Fail per item | Pass/Fail | Front matter inspection | Verify metadata in EN/PT optional pages | `title`: Pass; `description`: Pass; `slug`: Pass (`optional-fields`); `draft: false`: Pass; `toc: true`: Pass; language parity: Pass | Yes. Required metadata is present and consistent for bilingual publication. |
+| Question (operational) | Metric | Scale / interpretation | Tool(s) | Procedure (summary) | Evidence location |
+| --- | --- | --- | --- | --- | --- |
+| Is the documentation **professionally written** (grammar/style, voice, tone, cognitive load)? | Count of blocking issues + **High/Med/Low** severity notes | Count (0 = none); each issue tagged by severity | Manual read; optional [Vale](https://vale.sh/) or spell-check | Review **owned** EN and PT markdown; list issues briefly; optional Vale run with config in repo if used | Value: **0 blocking issues**; no high-severity language issues. Conclusion: Pass. Evidence: `Part1/documentation/SamuelPinto1221316/reports/fleschKincaidHugoReadabilityReport.pdf`, this section (`§2.2`). |
+| Is the site **easy to navigate** to each primary guide, with a sensible **TOC** and **working links** (including **EN/PT**)? | Click count home -> owned page; TOC **Y/N**; **broken link** count (or Pass/Fail after tool run) | Clicks: non-negative integer; TOC: Y/N per language; links: 0 failures target | Manual navigation | From **`/`** and **`/pt/`**, count clicks to each owner's `/docs/xapi/...` page; confirm TOC | Value: click count = **2** (EN and PT paths), TOC present in both pages, and links resolve in the current structure. Conclusion: Pass. Evidence: `Part1/documentation/SamuelPinto1221316/reports/hugoListOutput.csv`, this section (`§2.2`). |
+| Does each guide include **necessary information for its theme**, use a **layout consistent** with teammate pages, and read **clearly** for its topic? | Checklist / judgement: **OK** vs **needs improvement** (+ short justification) | Ordinal; team interprets "needs improvement" as actionable gaps | Other `content/.../docs/xapi/` pages as reference | Compare front matter, heading levels, examples, and cross-links to sibling pages; self-check coverage of the **ownership map** theme | Value: **OK**; coverage and formatting are aligned with team patterns. Conclusion: Pass. Evidence: this section (`§2.1` and `§2.2`). |
+| Are **machine-readable labels and navigation aids** used (`title`, `description`, menus, search/breadcrumbs as the theme provides, **language switch**)? | Checklist: Pass/Fail **per item** (list which failed) | Pass/Fail per sub-item | `hugo list`, front matter inspection, manual UI check | Verify metadata on **EN and PT** owned pages; confirm language switch reaches the paired page; menus match group conventions | Value: `title` Pass, `description` Pass, `slug` Pass (`optional-fields`), `draft:false` Pass, `toc:true` Pass, language parity Pass. Conclusion: Pass. Evidence: `Part1/documentation/SamuelPinto1221316/reports/hugoListOutput.csv`, this section (`§2.2`). |
+
+Evidence reports used for this section:
+
+- `fleschKincaidHugoReadabilityReport.pdf`
+- `hugoListOutput.csv`
 
 ---
 
@@ -209,6 +221,11 @@ The current quiz emits the following xAPI verbs and fields:
 
 This map is consistent with the current quiz design: one response statement per answered question and one completion statement with final score.
 
+Evidence reports used for this section:
+
+- `twineStoryStatistics.pdf`
+- `lrsRun.png`
+
 ## 3.3 Security: client-side exposure tests
 
 The story was checked from the source HTML to confirm that sensitive LRS details are not embedded in the client.
@@ -226,33 +243,23 @@ Observed security properties:
 - the story keeps LRS interaction server-side through the proxy;
 - the `authority` field is used as xAPI metadata, not as a leak of secrets.
 
+Evidence reports used for this section:
+
+- `lrsRunHar.har`
+- `lrsRun.png`
+
 ## 3.4 GQM approach
 
 This section maps my Twine scope to **Goal 2** from the global report.
 
-**Goal (individual scope):** Evaluate whether the Optional Fields Twine quiz correctly assesses understanding of optional-field usage while preserving safe client architecture.
+**Goal 2 (from statement, applied to my story):** Analyse the standalone **Twine** learning story web component for evaluation and improvement with respect to **xAPI tracking**, **structural quality**, and **narrative consistency**, from the viewpoint of instructional designers and developers, using an external LRS.
 
-Questions and values for my scope:
-
-1. **Are endpoint and credentials kept off the client?**  
-   - **Metric:** Pass/Fail from static scan  
-   - **Value:** Pass  
-   - **Interpretation:** The HTML export references only the proxy endpoint, so secrets are not exposed in the story.
-
-2. **Do expected verbs appear in the story flow?**  
-   - **Metric:** fraction of expected verb types emitted by the design  
-   - **Value:** **3/3** verb types (`initialized`, `responded`, `completed`)  
-   - **Interpretation:** The quiz flow emits the verb set expected by this simplified assessment model.
-
-3. **Is the narrative clear and appropriate?**  
-   - **Metric:** manual tone/readability review  
-   - **Value:** clear, short, and instructional  
-   - **Interpretation:** The English narrative is readable and matches the learning objective.
-
-4. **Is navigation sound (no dead ends)?**  
-   - **Metric:** dead-end count  
-   - **Value:** **0**  
-   - **Interpretation:** All answer paths converge to the `End` passage.
+| Question (operational) | Metric | Scale / interpretation | Tool(s) | Procedure (summary) | Evidence location |
+| --- | --- | --- | --- | --- | --- |
+| Are the **LRS endpoint and credentials** kept off the client (repo, Twine export, built `public/`)? | Pass/fail on "no secrets and no bare LRS URL" in those artefacts | Pass / Fail | `.gitignore`; `rg`/grep (or equivalent) on sources + `public/` when built; optional **sanitised HAR** after deploy | Confirm `.env` is not committed; search exported story HTML and static output; optional HAR showing calls only to the site proxy, not to the LRS host | Value: **Pass**. The story uses `/.netlify/functions/xapi-statement`; no LRS credentials are embedded in client output. Evidence: `Part1/documentation/SamuelPinto1221316/reports/lrsRunHar.har`, `Part1/documentation/SamuelPinto1221316/reports/lrsRun.png`, `§3.3`. |
+| After a **scripted playthrough**, do the **expected verbs** for that story show up in the LRS? | Share of expected **verb types** observed vs the story's §3.2 map (e.g. 5/5) | Fraction or %; interpret against each story's checklist | Browser; **lrs.io** Statements UI (or LRS export) | `netlify dev` or production URL -> open story -> play to **End** -> compare Statements list to **individual §3.2** | Value: **3/3** expected verb types observed for this quiz model. Conclusion: Pass. Evidence: `Part1/documentation/SamuelPinto1221316/reports/lrsRun.png`, `Part1/documentation/SamuelPinto1221316/reports/twineStoryStatistics.pdf`, `§3.2`. |
+| Is the **English instructional text** readable and **tonally** appropriate for the audience? | **Flesch-Kincaid** (or equivalent) on passage body text + short **1-5** tone note | Grade level (approx.); rubric 1-5 | Python `textstat` or some online tool | Strip Harlowe macros/scripts; paste body text; run tool; keep **raw output** for the report | Value: readability classified as easy to read; tone is clear and instructional. Conclusion: Pass. Evidence: `Part1/documentation/SamuelPinto1221316/reports/fleschKincaidTwineReadabilityReport.pdf`, `§3.4`. |
+| Is **story flow** sound (**no dead ends**, no broken links)? | Count of dead ends / broken links | Count (target **0**) | **Twine 2** editor + manual playtest of every branch; optional **Twine statistics PDF** | Follow all links from **Start**; confirm every path reaches content or **End**; export stats PDF if required | Value: **0** dead ends/broken links. Conclusion: Pass. Evidence: `Part1/documentation/SamuelPinto1221316/reports/twineStoryStatistics.pdf`, `§3.1` and `§3.4`. |
 
 ---
 
@@ -275,6 +282,7 @@ Main findings for my owned documentation and Twine scope:
 - The content answers the key question of this theme: **when** optional fields should be used.
 - The Twine story now uses a simple 4-question quiz (one per optional field) with final score reporting (`0/4` to `4/4`).
 - Metadata, bilingual consistency, and proxy-based statement delivery are all in place for publication under `/docs/xapi/optional-fields/`, `/pt/docs/xapi/optional-fields/`, and `/stories/xapi-optional/`.
+- The evidence reports in `reports/` document readability, Hugo listing output, LRS runtime proof, HAR security capture, and story statistics.
 
 ---
 
