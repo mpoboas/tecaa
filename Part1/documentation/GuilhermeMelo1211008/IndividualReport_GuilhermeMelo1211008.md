@@ -15,8 +15,10 @@ Version 2, 2026-03-18
 
 | Revision | Date       | Author    | Description           |
 |----------|------------|-----------|-----------------------|
-| 1        | 2026-03-17 | Student 1 | Initial version       |
-| 2        | 2026-03-18 | Student 1 | Extended description  |
+| 1        | 2026-03-17 | Student 2 | Initial version       |
+| 2        | 2026-03-18 | Student 2 | Extended description  |
+| 3        | 2026-04-14 | Student 2 | Final technical details|
+
 
 ---
 
@@ -57,15 +59,18 @@ This report covers the artefacts and analysis under my responsibility, using the
 
 ## 1.1 Use of AI-generated content
 
-Clearly identify each AI system used, specify which parts of your work involved AI-generated content, and briefly explain the manner and extent to which each AI system contributed.
+- **Antigravity (Google DeepMind):** Primary coding assistant used for Hugo site configuration, Twine story development (Harlowe 3), Netlify Function implementation, and documentation translation. It assisted in resolving technical issues such as Harlowe/JavaScript bridge validation and Hugo FlexSearch multi-language assets.
+
 
 ## 1.2 Assigned scope (traceability)
 
 - **Owned Hugo pages (EN/PT):**  
-  `/content/xapi/structure.md`
+  `/content/en/docs/xapi/structure.md`  
+  `/content/pt/docs/xapi/strucuture.md`
 
 - **Twine story (standalone):**  
-  `/stories/<name>/index.html` (public URL)
+  `/stories/xapi-structure/index.html`
+
 
 - **Related issues:** #4, #5, #6, #13, #14, #15
 - **Key commits:** 
@@ -78,11 +83,12 @@ Cross-reference: Global report – Work distribution (RACI) and Ownership map.
 
 ## 2.1 Individual part: characteristics and adequacy
 
-Describe:
-- structure of your pages
-- navigation (menus, breadcrumbs)
-- bilingual support (EN/PT)
-- alignment with group conventions
+The **Core Structure** documentation section (Portuguese: *Estrutura Principal*) provides a deep dive into the mandatory xAPI components.
+- **Structure:** Hierarchical organization covering Actor, Verb, Object, and Version with standard Doks heading levels.
+- **Adequacy:** The page uses premium aesthetics (clear JSON blocks, semantic HTML5, and helpful tips) to guide developers. 
+- **Bilingual Support:** Full content parity between English and Portuguese, ensuring developers from different backgrounds can access the rules.
+- **Interactive module:** Embedded Twine module at the bottom of the page to reinforce the concepts via active learning.
+
 
 ## 2.2 GQM approach
 
@@ -193,24 +199,31 @@ This analysis serves as evidence for the global report aggregation.
 
 # 3. Twine story
 
+**Story file:** [`static/stories/xapi-structure/index.html`](../../projects/hugoGroupProject/xapi-specification/static/stories/xapi-structure/index.html)
+
 ## 3.1 Technical description
 
-Describe:
-- branching logic (decisions)
-- variables (e.g., `$score`, `$visitedPassages`)
-- end passage with “completed”
+The Twine story "xAPI Core Structure Assessment" was developed using **Harlowe 3.3.9**.
+- **Logic:** A linear progression through 6 knowledge checks covering the 4 mandatory fields (Actor, Verb, Object, Version) plus a final JSON construction challenge.
+- **Variables:** 
+  - `$score`: Tracks correct answers (0-6).
+  - `$q1_answer`, `$q6_answer`: Captures user string inputs for validation.
+- **Interactivity:** Uses a mix of choice-based links and text inputs. A JavaScript bridge was implemented for Q6 to validate JSON syntax and ensure all mandatory root keys are present before awarding points.
+- **xAPI Integration:** Statements are sent via a global `xapi` object defined in `StoryJavaScript`.
+
 
 ---
 
-## 3.2 xAPI statement map (evidence)
+## 3.2 xAPI statement map
 
 | Action        | Expected Verb        | Fields Sent                         | Result |
 |--------------|--------------------|-------------------------------------|--------|
-| Story load   | initialized/launched | Actor, Verb, Object, Timestamp     | Pass   |
-| Choice       | experienced/responded | Actor, Verb, Object, Result       | Pass   |
-| End          | completed/scored    | Actor, Verb, Object, Result        | Pass   |
+| xAPI Core Structure Course   | launched           | Actor, Verb, Object, Version        | Pass   |
+| Question #: (title of the question)     | responded          | Actor, Verb, Object, Result(success)| Pass   |
+| xAPI Core Structure Course   | completed          | Actor, Verb, Object, Result(score)  | Pass   |
 
-Include LRS logs as evidence.
+**Evidence:**
+![LRS statements listing for xAPI Structure (Twine)](reports/lrs-run.png)
 
 ---
 
@@ -219,18 +232,21 @@ Include LRS logs as evidence.
 | Test                         | Method                          | Result |
 |------------------------------|----------------------------------|--------|
 | Static search                | grep for credentials/endpoints   | Pass   |
-| Network capture (HAR)        | DevTools network logs            | Pass   |
-| Proxy usage                  | Requests via `/api/xapi`         | Pass   |
+| Network capture (HAR)        | Checked for LRS Basic Auth       | Pass   |
+| Proxy usage                  | Requests via `/.netlify/functions/xapi-statement` | Pass   |
+
 
 ---
 
 ## 3.4 GQM approach
 
-Describe:
-- goal(s)
-- questions
-- metrics
-- results
+**Goal:** Evaluate the Twine story's effectively in identifying common student errors in xAPI statement construction.
+- **Question:** Which fields are most prone to errors?
+  - **Metric:** Error count per field (Actor, Verb, Object, Version) captured via `responded` statements with `result.success=false`.
+- **Question:** Does the interactive module improve knowledge retention?
+  - **Metric:** Completion rate of the final JSON challenge vs initial choice-based questions.
+- **Result:** The assessment effectively highlights that semantic uniqueness (IRIs) is the most difficult concept for users, while the structural keys (Actor/Object) are easily understood.
+
 
 ---
 
@@ -238,18 +254,18 @@ Describe:
 
 Show evidence of conventions:
 
-- **Commit messages:** reference issues
-- **Naming conventions:** folder/file structure
-- **Repository organization**
+- **Commit messages:** Example commit message: `#5 Core Structure Twine`
+- **Naming conventions:** `docs/xapi/` and `stories/xapi-structure/`
 
 ---
 
 # 5. Conclusions
 
-Summarise:
-- main findings
-- challenges
-- impact on analysis
+The implementation successfully combined technical documentation with interactive validation.
+- **Findings:** xAPI tracking provides granular visibility into student difficulties (e.g., identifying which specific field is most often forgotten in JSON).
+- **Challenges:** Harlowe 3's restricted JavaScript scope required a hidden-element bridge to transfer data from HTML textareas to story variables. Port management in local development (Netlify 8888 vs Hugo 1313) was critical for API functional testing.
+- **Conclusion:** The site is fully compliant with the team's xAPI tracking and security mandates.
+
 
 ---
 
