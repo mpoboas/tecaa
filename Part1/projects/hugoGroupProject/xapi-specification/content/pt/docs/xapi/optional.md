@@ -157,17 +157,6 @@ Isto ajuda a perceber, na prática, como a presença (ou ausência) de `result` 
 
 ---
 
-## Perspetiva GQM
-
-Uma forma simples de avaliar se os campos opcionais estão a ser bem usados é aplicar GQM:
-
-- **Goal**: garantir uso correto dos campos opcionais
-- **Question**: os utilizadores/sistemas usam os campos quando fazem sentido?
-- **Metric**: número (ou percentagem) de declarações com uso correto de cada campo
-
-Este enquadramento liga a implementação técnica a objetivos de qualidade de dados.
-
----
 
 ## Exemplo completo
 
@@ -201,3 +190,14 @@ Este enquadramento liga a implementação técnica a objetivos de qualidade de d
   "version": "1.0.3"
 }
 ```
+
+---
+
+## Módulo interativo
+
+Segue-se o story interativo autónomo para explorares quando faz sentido incluir campos opcionais ao gerar eventos xAPI.
+
+<iframe title="Módulo interativo xAPI Campos Opcionais" src="/stories/xapi-optional/" width="100%" height="720" loading="lazy" style="display:block;max-width:100%;min-height:32rem;border:1px solid var(--bs-border-color, #dee2e6);border-radius:0.375rem"></iframe>
+
+[Abrir o módulo num separador completo](/stories/xapi-optional/) se preferires.
+

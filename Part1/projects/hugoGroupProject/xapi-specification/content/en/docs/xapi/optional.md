@@ -174,3 +174,13 @@ Example:
   "version": "1.0.3"
 }
 ```
+
+---
+
+## Interactive module
+
+Use the standalone interactive story below to explore when to include optional fields while generating xAPI events.
+
+<iframe title="xAPI Optional Fields interactive module" src="/stories/xapi-optional/" width="100%" height="720" loading="lazy" style="display:block;max-width:100%;min-height:32rem;border:1px solid var(--bs-border-color, #dee2e6);border-radius:0.375rem"></iframe>
+
+[Open the module in a full tab](/stories/xapi-optional/) if you prefer.
