@@ -24,7 +24,7 @@ Esta página foca-se na **estrutura principal e nos elementos obrigatórios** da
 
 Uma declaração xAPI representa uma interação de aprendizagem única e baseia-se num modelo conceptual simples:
 
-> **Ator – Verbo – Objeto**
+> **Ator – Verbo – Objeto – Versão**
 
 Este modelo descreve:
 
@@ -153,3 +153,5 @@ Se estas condições não forem cumpridas, a declaração pode ser rejeitada ou 
 Segue-se um pequeno percurso interativo dos conceitos desta página.
 
 <iframe src="/stories/xapi-structure/index.html" width="100%" height="600px" frameborder="0" style="border: 1px solid #ccc; border-radius: 8px;"></iframe>
+
+[Abrir o módulo num separador completo](/stories/xapi-structure/) se preferir.

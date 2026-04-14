@@ -24,7 +24,7 @@ This page focuses on the **core structure and required elements** of xAPI statem
 
 An xAPI statement represents a single learning interaction and is based on a simple conceptual model:
 
-> **Actor – Verb – Object**
+> **Actor – Verb – Object – Version**
 
 This model describes:
 
@@ -152,4 +152,6 @@ To comply with the xAPI specification, statements must follow a set of validatio
 Below is a short interactive tour of the concepts on this page.
 
 <iframe src="/stories/xapi-structure/index.html" width="100%" height="600px" frameborder="0" style="border: 1px solid #ccc; border-radius: 8px;"></iframe>
+
+[Open the module in a full browser tab](/stories/xapi-structure/) if you prefer.
 
