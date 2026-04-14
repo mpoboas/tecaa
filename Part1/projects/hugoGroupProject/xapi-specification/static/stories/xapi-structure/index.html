@@ -116,30 +116,30 @@ Incorrect. The correct answer is &#39;&#39;Version&#39;&#39;.
 
 &#39;&#39;Statement A:&#39;&#39;
 &lt;pre&gt;
-{ 
+&amp;lbrace; 
   &quot;user&quot;: &quot;Guilherme&quot;, 
   &quot;action&quot;: &quot;completed&quot;, 
   &quot;target&quot;: &quot;test&quot; 
-}
+&amp;rbrace;
 &lt;/pre&gt;
 
 [[Select Statement A-&gt;Q5Wrong]]
 
 &#39;&#39;Statement B:&#39;&#39;
 &lt;pre&gt;
-{
-  &quot;actor&quot;: { 
+&amp;lbrace;
+  &quot;actor&quot;: &amp;lbrace; 
     &quot;name&quot;: &quot;Guilherme&quot;, 
     &quot;mbox&quot;: &quot;mailto:guilherme@example.com&quot; 
-  },
-  &quot;verb&quot;: { 
+  &amp;rbrace;,
+  &quot;verb&quot;: &amp;lbrace; 
     &quot;id&quot;: &quot;http://adlnet.gov/expapi/verbs/completed&quot; 
-  },
-  &quot;object&quot;: { 
+  &amp;rbrace;,
+  &quot;object&quot;: &amp;lbrace; 
     &quot;id&quot;: &quot;http://example.com/test&quot; 
-  },
+  &amp;rbrace;,
   &quot;version&quot;: &quot;1.0.3&quot;
-}
+&amp;rbrace;
 &lt;/pre&gt;
 
 [[Select Statement B-&gt;Q5Correct]]</tw-passagedata><tw-passagedata pid="15" name="Q5Correct" tags="" position="525,150" size="100,100">(set: $score to it + 1)

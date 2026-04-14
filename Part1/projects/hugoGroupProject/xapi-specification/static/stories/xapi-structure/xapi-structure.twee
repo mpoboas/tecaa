@@ -110,30 +110,30 @@ Before the final challenge, look at these two statements. Which one implements t
 
 ''Statement A:''
 <pre>
-{ 
+&lbrace; 
   "user": "Guilherme", 
   "action": "completed", 
   "target": "test" 
-}
+&rbrace;
 </pre>
 
 [[Select Statement A->Q5Wrong]]
 
 ''Statement B:''
 <pre>
-{
-  "actor": { 
+&lbrace;
+  "actor": &lbrace; 
     "name": "Guilherme", 
     "mbox": "mailto:guilherme@example.com" 
-  },
-  "verb": { 
+  &rbrace;,
+  "verb": &lbrace; 
     "id": "http://adlnet.gov/expapi/verbs/completed" 
-  },
-  "object": { 
+  &rbrace;,
+  "object": &lbrace; 
     "id": "http://example.com/test" 
-  },
+  &rbrace;,
   "version": "1.0.3"
-}
+&rbrace;
 </pre>
 
 [[Select Statement B->Q5Correct]]
