@@ -1,0 +1,395 @@
+:: StoryTitle
+xAPI Optional Fields Quiz
+
+:: StoryData
+{
+  "ifid": "E4A3F8C1-6D47-4E0D-9C8A-7A3D4A2F1B90",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Start",
+  "zoom": 1
+}
+
+:: Story JavaScript [script]
+/* Keep xAPI credentials off the client by sending statements only through the serverless proxy. */
+(function () {
+  if (window.tecaaXapiOptional) return;
+
+  window.tecaaXapiOptional = {};
+
+  var PROXY_PATH = '/.netlify/functions/xapi-statement';
+  var sessionStart = null;
+  var actorId =
+    sessionStorage.getItem('tecaa_actor_optional') ||
+    ('anon-' + Math.random().toString(36).slice(2, 10));
+  sessionStorage.setItem('tecaa_actor_optional', actorId);
+
+  function pageOrigin() {
+    return typeof location !== 'undefined' && location.origin ? location.origin : '';
+  }
+
+  function proxyOrigin() {
+    if (typeof location === 'undefined' || !location.hostname) return '';
+    if (location.hostname === 'localhost' && location.port === '1313') {
+      return location.protocol + '//' + location.hostname + ':8888';
+    }
+    return pageOrigin();
+  }
+
+  window.tecaaXapiOptional.markSessionStart = function () {
+    sessionStart = new Date();
+  };
+
+  window.tecaaXapiOptional.isoDurationSinceSessionStart = function () {
+    if (!sessionStart) return 'PT0S';
+    var sec = Math.max(0, Math.floor((Date.now() - sessionStart.getTime()) / 1000));
+    return 'PT' + sec + 'S';
+  };
+
+  window.tecaaXapiOptional.base = function (verbId, verbDisplay, extra) {
+    var statement = {
+      actor: {
+        name: actorId,
+        mbox: 'mailto:' + actorId + '@example.org'
+      },
+      verb: {
+        id: verbId,
+        display: { 'en-US': verbDisplay }
+      },
+      object: {
+        id: pageOrigin() + '/stories/xapi-optional/',
+        definition: {
+          name: { 'en-US': 'xAPI Optional Fields Quiz (Twine)' },
+          description: {
+            'en-US': 'Simple quiz about when to use optional xAPI fields.'
+          }
+        }
+      },
+      timestamp: new Date().toISOString(),
+      version: '1.0.3'
+    };
+
+    if (extra && typeof extra === 'object') {
+      Object.keys(extra).forEach(function (key) {
+        statement[key] = extra[key];
+      });
+    }
+
+    return statement;
+  };
+
+  window.tecaaXapiOptional.send = function (statement) {
+    var url = proxyOrigin() + PROXY_PATH;
+    return fetch(url, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(statement)
+    }).catch(function () {});
+  };
+})();
+
+:: Start
+(set: $score to 0)
+(set: $steps to 1)
+
+<script>
+if (window.tecaaXapiOptional) {
+  window.tecaaXapiOptional.markSessionStart();
+  window.tecaaXapiOptional.send(
+    window.tecaaXapiOptional.base(
+      'http://adlnet.gov/expapi/verbs/initialized',
+      'initialized'
+    )
+  );
+}
+</script>
+
+Welcome to the **xAPI Optional Fields Quiz**.
+
+You will answer 4 quick questions:
+- `result`
+- `context`
+- `timestamp`
+- `authority`
+
+Each correct answer gives 1 point.
+
+[[Begin quiz->Q1]]
+
+:: Q1
+(set: $steps to $steps + 1)
+
+What is the best use case for `result`?
+
+[[A quiz where you want to send score and success->Q1Right]]
+[[Opening a static page with no evaluation->Q1Wrong]]
+
+:: Q1Right
+(set: $steps to $steps + 1)
+(set: $score to $score + 1)
+
+<script>
+if (window.tecaaXapiOptional) {
+  window.tecaaXapiOptional.send(
+    window.tecaaXapiOptional.base(
+      'http://adlnet.gov/expapi/verbs/responded',
+      'responded',
+      {
+        result: {
+          success: true,
+          completion: false,
+          response: 'q1-correct-result'
+        }
+      }
+    )
+  );
+}
+</script>
+
+Correct.
+
+[[Next question->Q2]]
+
+:: Q1Wrong
+(set: $steps to $steps + 1)
+
+<script>
+if (window.tecaaXapiOptional) {
+  window.tecaaXapiOptional.send(
+    window.tecaaXapiOptional.base(
+      'http://adlnet.gov/expapi/verbs/responded',
+      'responded',
+      {
+        result: {
+          success: false,
+          completion: false,
+          response: 'q1-wrong-result'
+        }
+      }
+    )
+  );
+}
+</script>
+
+Not quite. `result` is mostly for outcomes like score/success.
+
+[[Next question->Q2]]
+
+:: Q2
+(set: $steps to $steps + 1)
+
+When is `context` most useful?
+
+[[When the same activity appears in different modules or courses->Q2Right]]
+[[When you only want to color links in a story->Q2Wrong]]
+
+:: Q2Right
+(set: $steps to $steps + 1)
+(set: $score to $score + 1)
+
+<script>
+if (window.tecaaXapiOptional) {
+  window.tecaaXapiOptional.send(
+    window.tecaaXapiOptional.base(
+      'http://adlnet.gov/expapi/verbs/responded',
+      'responded',
+      {
+        result: {
+          success: true,
+          completion: false,
+          response: 'q2-correct-context'
+        }
+      }
+    )
+  );
+}
+</script>
+
+Correct.
+
+[[Next question->Q3]]
+
+:: Q2Wrong
+(set: $steps to $steps + 1)
+
+<script>
+if (window.tecaaXapiOptional) {
+  window.tecaaXapiOptional.send(
+    window.tecaaXapiOptional.base(
+      'http://adlnet.gov/expapi/verbs/responded',
+      'responded',
+      {
+        result: {
+          success: false,
+          completion: false,
+          response: 'q2-wrong-context'
+        }
+      }
+    )
+  );
+}
+</script>
+
+Not quite. `context` helps explain where the action belongs.
+
+[[Next question->Q3]]
+
+:: Q3
+(set: $steps to $steps + 1)
+
+How often should `timestamp` be included?
+
+[[Almost always, to keep event order and timeline analysis->Q3Right]]
+[[Only when `result.success` is true->Q3Wrong]]
+
+:: Q3Right
+(set: $steps to $steps + 1)
+(set: $score to $score + 1)
+
+<script>
+if (window.tecaaXapiOptional) {
+  window.tecaaXapiOptional.send(
+    window.tecaaXapiOptional.base(
+      'http://adlnet.gov/expapi/verbs/responded',
+      'responded',
+      {
+        result: {
+          success: true,
+          completion: false,
+          response: 'q3-correct-timestamp'
+        }
+      }
+    )
+  );
+}
+</script>
+
+Correct.
+
+[[Next question->Q4]]
+
+:: Q3Wrong
+(set: $steps to $steps + 1)
+
+<script>
+if (window.tecaaXapiOptional) {
+  window.tecaaXapiOptional.send(
+    window.tecaaXapiOptional.base(
+      'http://adlnet.gov/expapi/verbs/responded',
+      'responded',
+      {
+        result: {
+          success: false,
+          completion: false,
+          response: 'q3-wrong-timestamp'
+        }
+      }
+    )
+  );
+}
+</script>
+
+Not quite. `timestamp` is broadly useful in xAPI analytics.
+
+[[Next question->Q4]]
+
+:: Q4
+(set: $steps to $steps + 1)
+
+When should you include `authority`?
+
+[[When you need to identify which service/system actually registered the statement->Q4Right]]
+[[When you want to rename the learner actor->Q4Wrong]]
+
+:: Q4Right
+(set: $steps to $steps + 1)
+(set: $score to $score + 1)
+
+<script>
+if (window.tecaaXapiOptional) {
+  window.tecaaXapiOptional.send(
+    window.tecaaXapiOptional.base(
+      'http://adlnet.gov/expapi/verbs/responded',
+      'responded',
+      {
+        result: {
+          success: true,
+          completion: false,
+          response: 'q4-correct-authority'
+        }
+      }
+    )
+  );
+}
+</script>
+
+Correct.
+
+[[Finish->End]]
+
+:: Q4Wrong
+(set: $steps to $steps + 1)
+
+<script>
+if (window.tecaaXapiOptional) {
+  window.tecaaXapiOptional.send(
+    window.tecaaXapiOptional.base(
+      'http://adlnet.gov/expapi/verbs/responded',
+      'responded',
+      {
+        result: {
+          success: false,
+          completion: false,
+          response: 'q4-wrong-authority'
+        }
+      }
+    )
+  );
+}
+</script>
+
+Not quite. `authority` is about who sent/registered the statement.
+
+[[Finish->End]]
+
+:: End
+(set: $steps to $steps + 1)
+(set: _success to $score >= 3)
+
+<script>
+if (window.tecaaXapiOptional) {
+  var duration = window.tecaaXapiOptional.isoDurationSinceSessionStart();
+  var raw = Math.max(0, Math.min(4, Number((window.State && window.State.variables && window.State.variables.score) || 0)));
+  var scaled = raw / 4;
+  var success = raw >= 3;
+
+  window.tecaaXapiOptional.send(
+    window.tecaaXapiOptional.base(
+      'http://adlnet.gov/expapi/verbs/completed',
+      'completed',
+      {
+        result: {
+          score: {
+            raw: raw,
+            min: 0,
+            max: 4,
+            scaled: scaled
+          },
+          success: success,
+          completion: true,
+          duration: duration
+        }
+      }
+    )
+  );
+}
+</script>
+
+You completed the Optional Fields quiz.
+
+- Score: **(print: $score) / 4**
+- Steps visited: **(print: $steps)**
+- Proxy used: `/.netlify/functions/xapi-statement`
+
+[[Restart->Start]]
+
