@@ -201,55 +201,30 @@ The screenshot below shows **six** statements in one session for activity **“x
 
 This matches the group position in [`../group/GlobalReport.md`](../group/GlobalReport.md) **§5.6**: LRS credentials and the real LRS endpoint URL are **not** embedded in the Twine export or static site; they live in **`.env`** (local, gitignored) and **Netlify environment variables** in production. The browser sends statements only to the serverless proxy **[`xapi-statement.mjs`](../../projects/hugoGroupProject/xapi-specification/netlify/functions/xapi-statement.mjs)** at **`POST /.netlify/functions/xapi-statement`** (see `PROXY_PATH` in the story’s embedded script in [`index.html`](../../projects/hugoGroupProject/xapi-specification/static/stories/xapi-fundamentals/index.html)).
 
-| Test               | Method                                                                                        | Result                                                                                                                                                                                                                                                                                              |
-| ------------------ | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Static search      | Search Twine export / repo for LRS URL, Basic-auth secrets, or API keys                       | **Pass** — no credentials or bare LRS endpoint in client artefacts                                                                                                                                                                                                                                  |
-| Runtime (DevTools) | Confirm requests target the Netlify function, not the LRS host; payload = statement JSON only | **Pass** — same evidence as the group report: [`../group/reports/api2.png`](../group/reports/api2.png) (request URL `/.netlify/functions/xapi-statement`, `200 OK`), [`../group/reports/api1.png`](../group/reports/api1.png) (sample `launched` payload; actor homePage matches the deployed site) |
+Per the **Part 1 checklist** (individual: *Twine – LRS security*), runtime evidence includes a **sanitized HAR** captured during a **full playthrough** of the story on the deployed site (no LRS URL or auth headers from the real store appear in the browser log—only calls to the site origin and the Netlify function).
+
+| Test | Method | Result |
+| ---- | ------ | ------ |
+| Static search | Search Twine export / repo for LRS URL, Basic-auth secrets, or API keys | **Pass** — no credentials or bare LRS endpoint in client artefacts |
+| HAR (full run) | Chrome/Edge DevTools → Network: play **xAPI Fundamentals** to **End** on https://tecaa-isep.netlify.app/stories/xapi-fundamentals/ → *Save all as HAR with content*; sanitize if any sensitive cookie/header slips in | **Pass** — repository copy: [`reports/tecaa-isep.netlify.app.har`](reports/tecaa-isep.netlify.app.har) |
+| Screenshots (supplementary) | Same session: request URL and response for `xapi-statement`; sample JSON payload | **Pass** — [`../group/reports/api2.png`](../group/reports/api2.png) (`POST` `/.netlify/functions/xapi-statement`, `200 OK`), [`../group/reports/api1.png`](../group/reports/api1.png) (sample `launched` statement body; no secrets) |
 
 ---
 
 ## 3.4 GQM approach
 
-This section covers **only my Twine story** under Goal 2 in the global report ([`../group/GlobalReport.md`](../group/GlobalReport.md) §6.1), with security aligned to **§5.6**. The global group will pool everyone’s numbers in §6.2–6.3; I use this as input for **§5 Conclusions** later.
+This section covers **only my Twine story** under **Goal 2** in the global report ([`../group/GlobalReport.md`](../group/GlobalReport.md) §6.1), with security aligned to **§5.6**. The questions and columns mirror §2.2. Raw tool outputs stay under [`reports/`](reports/) and [`../group/reports/`](../group/reports/); §6.2–6.3 in the global report will aggregate everyone’s values.
 
-**Goal (individual scope):** Check whether _xAPI Fundamentals_ behaves as intended: statements reach the LRS, the story is navigable, and we are not leaking LRS configuration in the static export.
+### Goal 2
 
-**Questions I used**:
+**Goal 2:** Analyse the standalone **Twine** learning story for evaluation and improvement with respect to **xAPI tracking**, **structural quality**, and **narrative consistency**, from the viewpoint of instructional designers and developers, using an external LRS.
 
-1. Are endpoint and credentials kept off the client?
-2. Do the expected verbs show up in the LRS after a normal playthrough?
-3. Is the English narrative readable and consistent for the target audience?
-4. Is the flow sane (no dead ends)?
-
----
-
-**1 — Client exposure**  
-_Metric:_ pass/fail on “no secrets or bare LRS URL in repo / built HTML / Twine export.”  
-_How:_ repository search on `static/stories/xapi-fundamentals/` and related paths; compare with group §5.6; DevTools on production as in §3.3.  
-_Tool report:_ §3.3 table; [`../group/reports/api1.png`](../group/reports/api1.png), [`../group/reports/api2.png`](../group/reports/api2.png).  
-_Value:_ **Pass.**  
-_Partial answer:_ Credentials and LRS endpoint are server-side only; the client posts JSON to `/.netlify/functions/xapi-statement` and the captured payload contains no secrets.
-
-**2 — LRS behaviour**  
-_Metric:_ share of expected verb types seen after one scripted run (see §3.2).  
-_How:_ `netlify dev` or https://tecaa-isep.netlify.app/stories/xapi-fundamentals/, story to **End**, then read the statement list in **lrs.io**.  
-_Tool report:_ screenshot [`reports/lrs-run.png`](reports/lrs-run.png) (Statements view, 12 Apr 2026 run).  
-_Value:_ **5/5** verb types present (`initialized`, `launched`, `experienced`, `responded`×2 on wrong-then-right path, `completed`).  
-_Partial answer:_ Tracking matches the design; the extra `responded` is explained by the quiz retry, not a fault.
-
-**3 — Narrative / level**  
-_Metric:_ approximate Flesch–Kincaid on exported passage text.
-_How:_ copy text from Twine source or HTML and use an online checker for level, check PDF export for results.  
-_Tool report:_ PDF export from [Flesch Kincaid Calculator](https://fleschkincaidcalculator.com) — [`reports/flesch-kincaid-readability-report.pdf`](reports/flesch-kincaid-readability-report.pdf) (12 Apr 2026).  
-_Value:_ **Flesch–Kincaid grade 9.0**; Flesch Reading Ease **52.0**; 286 words / 24 sentences (2 min estimated read).  
-_Partial answer:_ Narrative reads around late middle-school / early high-school by F–K; the higher SMOG/Coleman figures fit technical terms (xAPI, LRS, verbs) in the passage.
-
-**4 — Structure / dead ends**  
-_Metric:_ number of broken links or inaccessible passages.  
-_How:_ opened the story in Twine 2 and followed every branch to check navigation.  
-_Tool report:_ manual walkthrough; structural counts in [`reports/xAPI Fundamentals Story Statistics.pdf`](<reports/xAPI Fundamentals Story Statistics.pdf>).  
-_Value:_ 0  
-_Partial answer:_ All passages reachable, no dead ends.
+| Question (operational)                                                                              | Metric                                                                    | Scale / interpretation                    | Tool(s)                                                                                                                               | Procedure (_xAPI Fundamentals_ story)                                                                                                                                   | My collected value                                                                                                                                                                                                    | Answer                                                                                                                                                       |
+| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- | ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Are the **LRS endpoint and credentials** kept off the client (repo, Twine export, built `public/`)? | Pass/fail on “no secrets and no bare LRS URL” in those artefacts          | Pass / Fail                               | `.gitignore`; **sanitized HAR**; DevTools screenshots                                                                 | Search `static/stories/xapi-fundamentals/` and related paths; compare with global §5.6; full-run HAR + request inspection (§3.3).                                         | **Pass.** Evidence: [`reports/tecaa-isep.netlify.app.har`](reports/tecaa-isep.netlify.app.har); [`../group/reports/api1.png`](../group/reports/api1.png), [`../group/reports/api2.png`](../group/reports/api2.png). | Credentials and LRS URL stay in `.env` / Netlify env; the client posts statement JSON to the Netlify function; HAR and payloads show no LRS secrets in the browser. |
+| After a **scripted playthrough**, do the **expected verbs** for this story show up in the LRS?      | Share of expected **verb types** observed vs the §3.2 map                 | Fraction; target full set for this design | Browser; [lrs.io](https://lrs.io/home) Statements UI                                                                                  | `netlify dev` or https://tecaa-isep.netlify.app/stories/xapi-fundamentals/; play to **End**; compare list to §3.2.                                                      | **5/5** verb types (`initialized`, `launched`, `experienced`, `responded`×2 on wrong-then-right path, `completed`). See [`reports/lrs-run.png`](reports/lrs-run.png) (12 Apr 2026).                                   | Tracking matches the design; the second `responded` reflects one wrong quiz attempt before retry, not an error.                                              |
+| Is the **English instructional text** readable and **tonally** appropriate for the audience?        | **Flesch–Kincaid** (or equivalent) on passage body text + short tone note | Grade level (approx.); qualitative tone   | [Flesch Kincaid Calculator](https://fleschkincaidcalculator.com); Twine statistics PDF                                                | Strip Harlowe macros/scripts from learner-facing text; run checker; keep PDF export in `reports/`.                                                                      | **Flesch–Kincaid grade 9.0**; Flesch Reading Ease **52.0**; ~286 words / ~24 sentences (~2 min read). [`reports/flesch-kincaid-readability-report.pdf`](reports/flesch-kincaid-readability-report.pdf) (12 Apr 2026). | Narrative sits around late middle-school / early high-school by F–K; higher SMOG/Coleman-style scores are consistent with terms such as xAPI, LRS, and verb. |
+| Is **story flow** sound (**no dead ends**, no broken links)?                                        | Count of dead ends / broken links                                         | Count (target **0**)                      | Twine 2 editor; manual playtest; [`reports/xAPI Fundamentals Story Statistics.pdf`](<reports/xAPI Fundamentals Story Statistics.pdf>) | From **Start**, follow every branch; confirm each path reaches content or **End**.                                                                                      | **0** dead ends; all passages reachable.                                                                                                                                                                              | Flow is sound; optional **SCORMCompare** branch still converges on **End**.                                                                                  |
 
 ---
 
@@ -265,7 +240,7 @@ Evidence that group conventions were followed:
 
 # 5. Conclusions
 
-For **Goal 1** (Fundamentals EN/PT), the metrics in §2.2 meet the interpretation rules: no blocking writing issues, navigation and links behave as intended, technical claims for this overview scope align with the spec, layout matches teammates, and metadata/nav aids pass. For **Goal 2** (Twine), security passes via env + Netlify function proxy with DevTools evidence; LRS logging matches the §3.2 verb map; readability sits at F–K grade ~9 with appropriate tone for developers; structure has no dead ends, with Twine statistics PDF on file.
+For **Goal 1** (Fundamentals EN/PT), the metrics in §2.2 meet the interpretation rules: no blocking writing issues, navigation and links behave as intended, technical claims for this overview scope align with the spec, layout matches teammates, and metadata/nav aids pass. For **Goal 2** (Twine), security passes via env + Netlify function proxy, with **sanitized HAR** ([`reports/tecaa-isep.netlify.app.har`](reports/tecaa-isep.netlify.app.har)) and screenshots in §3.3; LRS logging matches the §3.2 verb map; readability sits at F–K grade ~9 with appropriate tone for developers; structure has no dead ends, with Twine statistics PDF on file.
 
 Challenges included aligning the measurement tables with the global report and ensuring local `netlify dev` (not `hugo server` alone) when exercising the xAPI proxy. Next iteration I would add a short “further reading” block on the Fundamentals page for IEEE clause references, and optionally one more quiz branch in the story to increase interaction depth without raising cognitive load.
 
@@ -279,3 +254,4 @@ Challenges included aligning the measurement tables with the global report and e
 - Netlify Functions — serverless `xapi-statement` proxy in this repo: [`netlify/functions/xapi-statement.mjs`](../../projects/hugoGroupProject/xapi-specification/netlify/functions/xapi-statement.mjs)
 - Flesch–Kincaid calculator (readability PDF in [`reports/flesch-kincaid-readability-report.pdf`](reports/flesch-kincaid-readability-report.pdf))
 - Twine story statistics: [`reports/xAPI Fundamentals Story Statistics.pdf`](<reports/xAPI Fundamentals Story Statistics.pdf>)
+- Security — sanitized HAR (full story run, production): [`reports/tecaa-isep.netlify.app.har`](reports/tecaa-isep.netlify.app.har)
