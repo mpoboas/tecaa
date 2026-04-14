@@ -21,7 +21,7 @@ Nesta página, o foco é explicar **quando faz sentido usar** os campos opcionai
 - `timestamp`
 - `authority`
 
-> Se ainda não viste os conceitos base, consulta [**Fundamentos**]({{< relref "fundamentals" >}}) e [**Estrutura Principal**]({{< relref "strucuture" >}}).
+> Se ainda não viste os conceitos base, consulta [**Fundamentos**]({{< relref "fundamentals" >}}) e [**Estrutura Principal**]({{< relref "structure" >}}).
 
 ---
 

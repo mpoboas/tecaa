@@ -2,7 +2,7 @@ path,slug,title,date,expiryDate,publishDate,draft,permalink,kind,section
 content/en/docs/xapi/fundamentals.md,fundamentals,Fundamentals,2026-03-24T22:36:00Z,0001-01-01T00:00:00Z,2026-03-24T22:36:00Z,false,/docs/xapi/fundamentals/,page,docs
 content/pt/docs/xapi/fundamentals.md,fundamentals,Fundamentos,2026-03-24T22:36:00Z,0001-01-01T00:00:00Z,2026-03-24T22:36:00Z,false,/pt/docs/xapi/fundamentals/,page,docs
 content/en/docs/xapi/structure.md,structure,Core Structure,2026-03-30T00:00:00Z,0001-01-01T00:00:00Z,2026-03-30T00:00:00Z,false,/docs/xapi/structure/,page,docs
-content/pt/docs/xapi/strucuture.md,structure,Estrutura Principal,2026-03-30T00:00:00Z,0001-01-01T00:00:00Z,2026-03-30T00:00:00Z,false,/pt/docs/xapi/structure/,page,docs
+content/pt/docs/xapi/structure.md,structure,Estrutura Principal,2026-03-30T00:00:00Z,0001-01-01T00:00:00Z,2026-03-30T00:00:00Z,false,/pt/docs/xapi/structure/,page,docs
 content/en/docs/xapi/optional.md,optional-fields,Optional Fields,2026-04-07T00:00:00Z,0001-01-01T00:00:00Z,2026-04-07T00:00:00Z,false,/docs/xapi/optional-fields/,page,docs
 content/en/docs/xapi/validation.md,validation,Validation and IRIs,2026-04-10T00:00:00Z,0001-01-01T00:00:00Z,2026-04-10T00:00:00Z,false,/docs/xapi/validation/,page,docs
 content/en/blog/example/index.md,,Example Post,2026-02-16T16:31:32+01:00,0001-01-01T00:00:00Z,2026-02-16T16:31:32+01:00,false,/blog/example-post/,page,blog
