@@ -5,28 +5,28 @@ other = "Começar"
 other = "Começar"
 
 [home_feature_update_title]
-other = "Atualizar conteúdo"
+other = "Fundamentos"
 
 [home_feature_update_body]
-other = "Edite <code>content/pt/_index.md</code> (ou <code>content/en/_index.md</code> para inglês) para ver esta página mudar."
+other = "Comece pelos conceitos base da xAPI: propósito, modelo Ator-Verbo-Objeto, papel do LRS e comparação com SCORM. <a href=\"/pt/docs/xapi/fundamentals/\">Abrir guia</a>."
 
 [home_feature_add_title]
-other = "Adicionar conteúdo"
+other = "Estrutura Principal"
 
 [home_feature_add_body]
-other = "Adicione ficheiros Markdown em <code>content/pt/</code> ou <code>content/en/</code> para criar novas páginas."
+other = "Veja os campos obrigatórios da declaração, a forma JSON e as regras de estrutura base. <a href=\"/pt/docs/xapi/structure/\">Abrir guia</a>."
 
 [home_feature_config_title]
-other = "Configurar o site"
+other = "Campos Opcionais"
 
 [home_feature_config_body]
-other = "Edite a configuração em <code>config/_default/params.toml</code>."
+other = "Aprenda quando e como usar <code>result</code>, <code>context</code>, <code>timestamp</code> e <code>authority</code>. <a href=\"/pt/docs/xapi/optional-fields/\">Abrir guia</a>."
 
 [home_feature_read_title]
-other = "Ler a documentação"
+other = "Validação e IRIs"
 
 [home_feature_read_body]
-other = "Saiba mais na <a href=\"https://getdoks.org/\">documentação do Doks</a>."
+other = "Aplique regras de validação e critérios de qualidade para IRIs. <a href=\"/docs/xapi/validation/\">Abrir guia</a>."
 
 [home_footer_cta_title]
 other = "Comece a construir com o Doks hoje"
