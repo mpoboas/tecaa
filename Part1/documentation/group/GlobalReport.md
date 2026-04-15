@@ -305,11 +305,9 @@ Questions are the same four operational rows already defined in **§6.1** above.
 | Does each guide include **necessary information for its theme**, use a **layout consistent** with teammate pages, and read **clearly** for its topic? | **OK** (thematic + peer layout)                          | **OK** (mandatory fields theme)                                       | **OK** (optional-field theme + team patterns)    | **OK** (validation/IRI theme + structure)              |
 | Are **machine-readable labels and navigation aids** used (`title`, `description`, menus, breadcrumbs, **language switch**)?                           | All sub-items **Pass** (see `hugo-list-output.csv`)      | **Pass** EN/PT front matter + language switch                         | **Pass** (`slug` `optional-fields`, `toc`, etc.) | **Pass** (`validation`, `toc`, `draft: false`, etc.)   |
 
-**Extra cross-checks (not a separate row in §6.1, but reported by individuals):** **S1** and **S4** both logged **0** confirmed technical/spec errors after review; **S2** and **S3** folded accuracy into the thematic/layout judgement above—see [`../MiguelPovoas1201716/IndividualReport_MiguelPovoas1201716.md`](../MiguelPovoas1201716/IndividualReport_MiguelPovoas1201716.md) §2.2 and [`../VicenteTeixeira1210974/IndividualReport_VicenteTeixeira1210974.md`](../VicenteTeixeira1210974/IndividualReport_VicenteTeixeira1210974.md) §2.2.
-
 ### Goal 2 — Twine stories (xAPI tracking, structure, narrative)
 
-Same four operational questions as **§6.1 Goal 2**. Verb fractions are **against each story’s own §3.2 map** (different stories emit different verb sets by design, so **3/3** is not “worse” than **5/5**).
+Same four operational questions as **§6.1 Goal 2**. Verb fractions are **against each story’s own §3.2 map**
 
 | Question (operational) — §6.1                                                   | S1 — `xapi-fundamentals`                                                                                                                                                                    | S2 — `xapi-structure`                                                                                                                                                                                  | S3 — `xapi-optional`                                                                                                             | S4 — `xapi-validation`                                                                                                      |
 | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
@@ -324,7 +322,7 @@ Same four operational questions as **§6.1 Goal 2**. Verb fractions are **agains
 
 **Goal 1 — did we meet the plan?** For all four owned page pairs (Fundamentals, Structure, Optional fields, Validation), the combined table in §6.2 shows **no** unresolved “needs improvement” flags: writing passes, navigation and bilingual switching work on the deployed site, and metadata lines up with the Doks layout we agreed in §4. The main **trade-off** was time: keeping **Portuguese** pages as full counterparts to English (not shallow stubs) cost review cycles, but the group decided early that bilingual Hugo content was non-negotiable for the brief, so we absorbed that cost in scheduling rather than dropping PT.
 
-**Goal 2 — did we meet the plan?** Every Twine export posts xAPI only to **`/.netlify/functions/xapi-statement`**; nobody ships LRS Basic auth or a bare LRS URL in `static/stories/`. Verb coverage **matches each story’s own map** (quiz-only stories naturally emit fewer verb _types_ than richer flows). **Readability** sits in a band that fits **developers / master students**, which is exactly the audience from the project statement. **S4** still has a visible “to complete” line for a **sanitized HAR** in the individual report—that does not change the architecture (proxy + env), but it is the one open housekeeping item we would close before examination if the teacher expects four identical evidence folders.
+**Goal 2 — did we meet the plan?** Every Twine export posts xAPI only to **`/.netlify/functions/xapi-statement`**; nobody ships LRS Basic auth or a bare LRS URL in `static/stories/`. Verb coverage **matches each story’s own map** (quiz-only stories naturally emit fewer verb _types_ than richer flows). **Readability** sits in a band that fits **developers / master students**, which is exactly the audience from the project statement.
 
 **Security (cross-cutting):** Post-deploy checks in **§5.6** plus the **HAR** files listed in Appendix A line up with the checklist: browser traffic stays on our origin for xAPI posts; secrets remain in **`.env`** (local) and **Netlify** env (production).
 
@@ -332,13 +330,11 @@ Same four operational questions as **§6.1 Goal 2**. Verb fractions are **agains
 
 # 7. Conclusion
 
-We set out to deliver **Theme 1** — a small, honest technical documentation site on **xAPI core mechanics and compliance**, bilingual where Hugo requires it, with one **Twine** story per member and **secure** LRS integration. That is what shipped in **Part 1**: the site is public on **Netlify**, the four guides cover the ownership split in §2.3, and each story is playable from **`/stories/xapi-*/`** with statements visible in our shared test LRS.
+We set out to deliver **Theme 1** a technical documentation site on **xAPI core mechanics and compliance**, bilingual where Hugo requires it, with one **Twine** story per member and **secure** LRS integration. That is what shipped in **Part 1**: the site is public on **Netlify**, the four guides cover the ownership split in §2.3, and each story is playable from **`/stories/xapi-*/`** with statements visible in our shared test LRS.
 
 **Why this solution:** Hugo + Thulite/Doks gave us multilingual docs without Docsy (course constraint), and **Netlify Functions** gave us the smallest server-side hop we needed to keep credentials off static exports—no bespoke backend, which mattered for a short academic block.
 
-**Main takeaways:** (1) the **GQM** tables in §6.2 show Goal 1 and Goal 2 thresholds met for every member who filed numbers; (2) **traceability** is preserved because evidence lives under each student folder and in `static/stories/`; (3) the remaining polish is mostly **evidence hygiene** (one pending HAR) rather than design changes.
-
-Part **2** of TECAA will build on the same repository layout but is **out of scope** for this document revision.
+**Main takeaways:** (1) the **GQM** tables in §6.2 show Goal 1 and Goal 2 thresholds met for every member; (2) **traceability** is preserved because evidence lives under each student folder and in `static/stories/`; (3) the remaining polish is mostly **evidence hygiene** (one pending HAR) rather than design changes.
 
 ---
 
