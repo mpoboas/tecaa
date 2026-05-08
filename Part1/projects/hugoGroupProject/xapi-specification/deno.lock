@@ -18,6 +18,7 @@
         "npm:@thulite/images@^3.3.4",
         "npm:@thulite/inline-svg@^1.2.2",
         "npm:@thulite/seo@^2.4.3",
+        "npm:netlify@^24.11.1",
         "npm:prettier@^3.8.1",
         "npm:thulite@^2.6.5",
         "npm:vite@^7.3.1"
