@@ -16,7 +16,7 @@
   weight = 10
 
 [[main]]
-  name = "Workshop prerequisites"
+  name = "Guides"
   url = "/docs/guides/prerequisites/"
   weight = 20
 
