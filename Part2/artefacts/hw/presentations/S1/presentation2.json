@@ -1,0 +1,149 @@
+[
+    {
+    "id": 1,
+    "title": "What is xAPI?",
+    "bullets": [
+    "Experience tracking standard for learning events",
+    "Captures actions as portable statements",
+    "Statements preserve evidence across systems"
+    ],
+    "speaker_notes": "Introduce xAPI as a shared language for learning data. Spend about 45 seconds establishing why statements matter (45s).",
+    "visual_idea": "Show multiple learning apps feeding one central learning record store.",
+    "mayer_principles": ["pre-training", "coherence"]
+    },
+    {
+    "id": 2,
+    "title": "Workshop Roadmap",
+    "bullets": [
+    "Learn statement structure basics",
+    "Explore docs and story examples",
+    "Send and verify live statements"
+    ],
+    "speaker_notes": "Preview the workshop flow to reduce uncertainty. Keep this quick and move on in 30 seconds (30s).",
+    "visual_idea": "Display a simple three-step workshop timeline.",
+    "mayer_principles": ["signaling", "segmenting"]
+    },
+    {
+    "id": 3,
+    "title": "Navigate the Docs",
+    "bullets": [
+    "Open bilingual Hugo documentation site",
+    "Use Fundamentals and Core Structure pages",
+    "Open Twine stories for guided practice"
+    ],
+    "speaker_notes": "Show where every needed resource lives before coding begins. Allow 40 seconds for navigation orientation (40s).",
+    "visual_idea": "Screenshot of site menu highlighting key documentation sections.",
+    "mayer_principles": ["spatial_contiguity", "signaling"]
+    },
+    {
+    "id": 4,
+    "title": "Statement Anatomy",
+    "bullets": [
+    "JSON object represents one event",
+    "Readable and machine-validated format",
+    "Mandatory and optional fields combine"
+    ],
+    "speaker_notes": "Explain the statement as a structured event record. Spend 50 seconds framing the mental model (50s).",
+    "visual_idea": "Annotated JSON block with highlighted field groups.",
+    "mayer_principles": ["coherence", "modality"]
+    },
+    {
+    "id": 5,
+    "title": "Actor – Verb – Object",
+    "bullets": [
+    "Actor identifies who performed action",
+    "Verb defines the action completed",
+    "Object identifies what action targeted"
+    ],
+    "speaker_notes": "Focus only on the three mandatory statement components. Keep this foundational segment to 60 seconds (60s).",
+    "visual_idea": "Three connected boxes labeled Actor, Verb, and Object.",
+    "mayer_principles": ["segmenting", "signaling"]
+    },
+    {
+    "id": 6,
+    "title": "Optional Fields Overview",
+    "bullets": [
+    "Result stores scores or completion",
+    "Context adds grouping and metadata",
+    "Timestamp records exact event time"
+    ],
+    "speaker_notes": "Show how optional fields enrich meaning without changing validity. Limit explanation to 50 seconds (50s).",
+    "visual_idea": "Expandable JSON sections revealing optional properties.",
+    "mayer_principles": ["pre-training", "coherence"]
+    },
+    {
+    "id": 7,
+    "title": "Validation and IRIs",
+    "bullets": [
+    "IRIs uniquely identify verbs and activities",
+    "Validate required fields before sending",
+    "Malformed identifiers cause rejected statements"
+    ],
+    "speaker_notes": "Connect validation rules directly to common errors. Spend about 55 seconds on this checkpoint (55s).",
+    "visual_idea": "Good versus bad IRI examples side by side.",
+    "mayer_principles": ["signaling", "spatial_contiguity"]
+    },
+    {
+    "id": 8,
+    "title": "Sending a Statement via Proxy",
+    "bullets": [
+    "Open /stories/xapi-structure/ interactive story",
+    "Complete fields and submit form",
+    "Proxy forwards request to LRS",
+    "Confirm successful response immediately"
+    ],
+    "speaker_notes": "Walk through the live send path step by step using the story. Allocate 75 seconds for the demo click-through (75s).",
+    "visual_idea": "Flow diagram from browser form to proxy to LRS.",
+    "mayer_principles": ["temporal_contiguity", "segmenting"]
+    },
+    {
+    "id": 9,
+    "title": "Verify in the LRS",
+    "bullets": [
+    "Open LRS statement viewer",
+    "Filter by recent timestamp",
+    "Match actor and activity values"
+    ],
+    "speaker_notes": "Immediately verify that the submitted record arrived correctly. Use 45 seconds for this confidence-building step (45s).",
+    "visual_idea": "LRS dashboard screenshot with newest statement highlighted.",
+    "mayer_principles": ["spatial_contiguity", "signaling"]
+    },
+    {
+    "id": 10,
+    "title": "Common Failures",
+    "bullets": [
+    "Malformed IRI",
+    "Wrong endpoint",
+    "CORS block",
+    "LRS UI delay"
+    ],
+    "speaker_notes": "Normalize failure by showing the four most likely demo issues. Reserve 60 seconds for rapid troubleshooting tips (60s).",
+    "visual_idea": "Four warning icons mapped to each failure category.",
+    "mayer_principles": ["coherence", "signaling"]
+    },
+    {
+    "id": 11,
+    "title": "Lab Safety — No Secrets in Client",
+    "bullets": [
+    "Never expose LRS credentials browser-side",
+    "Client sends requests to Netlify function",
+    "Proxy securely adds authorization headers"
+    ],
+    "speaker_notes": "Explain why secrets stay server-side using the proxy pattern. Spend 50 seconds reinforcing secure habits (50s).",
+    "visual_idea": "Browser-to-proxy-to-LRS diagram with locked credentials icon.",
+    "mayer_principles": ["personalisation", "coherence"]
+    },
+    {
+    "id": 12,
+    "title": "Next Steps + Links",
+    "bullets": [
+    "[LINK: prerequisites page]",
+    "[LINK: fundamentals page]",
+    "[LINK: xapi-structure story]",
+    "[LINK: validation page]"
+    ],
+    "speaker_notes": "Close by directing participants to self-study resources and follow-up practice. Finish in 30 seconds and invite questions (30s).",
+    "visual_idea": "Resource hub slide with four clickable link placeholders.",
+    "mayer_principles": ["signaling", "redundancy"]
+    }
+    ]
