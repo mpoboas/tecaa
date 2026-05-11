@@ -1,4 +1,4 @@
-# Project (First Part) – Global Report of Group X
+# Project (First Part) – Global Report of Group 101
 
 ## TECAA
 
@@ -10,18 +10,21 @@ Miguel Póvoas
 Samuel Pinto  
 Vicente Teixeira
 
-Version 5, 2026-04-10
+Version 8, 2026-04-14
 
 ---
 
 ## Revision History
 
-| Revision | Date       | Author(s)     | Description                                                     |
-| -------- | ---------- | ------------- | --------------------------------------------------------------- |
-| 1        | 2026-03-17 | Samuel Pinto  | Initial version                                                 |
-| 2        | 2026-04-10 | Miguel Póvoas | S1 ownership map paths vs repository                            |
-| 3        | 2026-04-10 | Group         | Sections 5–6, tools                                             |
-| 4        | 2026-04-10 | Group         | Twine xAPI via Netlify proxy; shared LRS; CSP for `/stories/**` |
+| Revision | Date       | Author(s)     | Description                                                             |
+| -------- | ---------- | ------------- | ----------------------------------------------------------------------- |
+| 1        | 2026-03-17 | Samuel Pinto  | Initial version                                                         |
+| 2        | 2026-04-10 | Miguel Póvoas | S1 ownership map paths vs repository                                    |
+| 3        | 2026-04-10 | Group         | Sections 5–6, tools                                                     |
+| 4        | 2026-04-10 | Group         | Twine xAPI via Netlify proxy; shared LRS; CSP for `/stories/**`         |
+| 5        | 2026-04-12 | Group         | GQM metrics updated                                                     |
+| 6        | 2026-04-14 | Group         | Live deploy URL; ownership map; security evidence; sample commits       |
+| 7        | 2026-04-14 | Group         | §6.2–6.3 GQM aggregation; §7 conclusion; references; appendix HAR index |
 
 ---
 
@@ -32,7 +35,8 @@ Version 5, 2026-04-10
 2. Work distribution
    2.1 Team identification  
     2.2 RACI overview  
-    2.3 Ownership map
+    2.3 Ownership map  
+    2.4 Example commits (auditability)
 3. Tools and technologies
 4. General conventions
 5. Documentation site
@@ -84,12 +88,23 @@ Clearly identify each AI system used, specify which parts of your work involved 
 
 ## 2.3 Ownership map
 
-| Student | Hugo Pages                                                          | Twine Story                         | Focus           |
-| ------- | ------------------------------------------------------------------- | ----------------------------------- | --------------- |
-| S1      | `/docs/xapi/fundamentals/` (EN), `/pt/docs/xapi/fundamentals/` (PT) | `static/stories/xapi-fundamentals/` | Fundamentals    |
-| S2      | /docs/xapi/structure                                                | /stories/xapi-structure             | Core structure  |
-| S3      | /docs/xapi/optional                                                 | /stories/xapi-optional              | Optional fields |
-| S4      | /docs/xapi/validation                                               | /stories/xapi-validation            | Validation      |
+| Student | Hugo pages (published)                                          | Twine story (repo path)             | Focus           |
+| ------- | --------------------------------------------------------------- | ----------------------------------- | --------------- |
+| S1      | `/docs/xapi/fundamentals/`, `/pt/docs/xapi/fundamentals/`       | `static/stories/xapi-fundamentals/` | Fundamentals    |
+| S2      | `/docs/xapi/structure/`, `/pt/docs/xapi/structure/`             | `static/stories/xapi-structure/`    | Core structure  |
+| S3      | `/docs/xapi/optional-fields/`, `/pt/docs/xapi/optional-fields/` | `static/stories/xapi-optional/`     | Optional fields |
+| S4      | `/docs/xapi/validation/`, `/pt/docs/xapi/validation/`           | `static/stories/xapi-validation/`   | Validation      |
+
+Standalone stories are also served under `/stories/xapi-<theme>/` on the deployed site (e.g. `/stories/xapi-fundamentals/`), matching the `static/stories/` layout.
+
+## 2.4 Example commits (auditability)
+
+Illustrative commits that reference issues and touch the Hugo project or this global report (verify in the repository with `git show <hash>`):
+
+| Issue | Summary                                             | Commit hash                                |
+| ----- | --------------------------------------------------- | ------------------------------------------ |
+| #13   | Site restructure for project xAPI theme             | `224fb480284f2fb2c91bc0b68a5c21d40ed6ef79` |
+| #14   | Defining tools, documentation site and GQM approach | `d2684482772a21e5b72e01016099d2e2a9f62563` |
 
 ---
 
@@ -122,7 +137,7 @@ Clearly identify each AI system used, specify which parts of your work involved 
 
 The group works **Theme 1** from the project statement: **The xAPI Specification: Core Mechanics and Compliance** (mandatory and optional statement fields, IRIs, validation, comparison with related standards where relevant). Themes 2–4 in the statement are **out of scope**.
 
-**Teacher confirmation (email):** _(date sent / date accepted — to be filled by the group.)_
+**Teacher confirmation (email):**
 Date sent: 03/17/2026
 Date accepted: 03/17/2026
 
@@ -203,21 +218,35 @@ Date accepted: 03/17/2026
 
 **Hosting**
 
-- **Netlify** connects to the repository; publish directory `**public/`\*\*.
+- **Netlify** connects to the repository; publish directory **`public/`**.
 - **Continuous Integration:** not planned as a separate pipeline; **Netlify’s deploy build** is the primary automated build step.
 
 **Public production URL**
 
-- _(To be added after first successful deploy — e.g. `https://<site>.netlify.app`.)_
+- **https://tecaa-isep.netlify.app/** (production deploy of the Hugo site in this repository).
 
 ## 5.5 Requirements Traceability Matrix
 
-| Requirement (statement Table 2.1)                             | Where addressed                                   | Evidence in repository                                                                                                                                                                                                                                                 |
-| ------------------------------------------------------------- | ------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Deployment (public CDN/server)                                | §5.4                                              | `[Part1/projects/hugoGroupProject/xapi-specification/netlify.toml](../../projects/hugoGroupProject/xapi-specification/netlify.toml)`; **live URL:** _(TBD)_                                                                                                            |
-| Security (server-side protection of LRS credentials/endpoint) | §6.1 Goal 2 (first row); post-deploy verification | LRS credentials and endpoint URL live only in a `**.env` file** for local use (never committed) and in **Netlify environment variables** for production; Twine/client bundles must not contain them. Evidence (grep on built output, optional HAR) **after deploy\*\*. |
-| Integration (Twine + xAPI, no credentials exposed in client)  | §5.3; individual reports                          | `static/stories/xapi-*/`; [`netlify/functions/xapi-statement.mjs`](../../projects/hugoGroupProject/xapi-specification/netlify/functions/xapi-statement.mjs); [Twine 2](https://twinery.org/2/#/); LRS only via proxy + env (see §5.3)                                  |
-| Bilingual Hugo documentation                                  | §5.3                                              | `content/en/`, `content/pt/`; `config/_default/languages.toml`; `config/_default/module.toml`                                                                                                                                                                          |
+| Requirement (statement Table 2.1)                             | Where addressed                | Evidence in repository                                                                                                                                                                                                                                                                                                                                                               |
+| ------------------------------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Deployment (public CDN/server)                                | §5.4                           | `[Part1/projects/hugoGroupProject/xapi-specification/netlify.toml](../../projects/hugoGroupProject/xapi-specification/netlify.toml)`; **live URL:** https://tecaa-isep.netlify.app/                                                                                                                                                                                                  |
+| Security (server-side protection of LRS credentials/endpoint) | §5.6; §6.1 Goal 2 (first row)  | LRS credentials and endpoint URL are **not** in client or repo: local **`.env`** (gitignored) and **Netlify environment variables** in production. Browser traffic posts xAPI JSON only to **`/.netlify/functions/xapi-statement`**; see §5.6 and [`netlify/functions/xapi-statement.mjs`](../../projects/hugoGroupProject/xapi-specification/netlify/functions/xapi-statement.mjs). |
+| Integration (Twine + xAPI, no credentials exposed in client)  | §5.3; §5.6; individual reports | `static/stories/xapi-*/`; [`netlify/functions/xapi-statement.mjs`](../../projects/hugoGroupProject/xapi-specification/netlify/functions/xapi-statement.mjs); [Twine 2](https://twinery.org/2/#/); LRS only via proxy + env (§5.6)                                                                                                                                                    |
+| Bilingual Hugo documentation                                  | §5.3                           | `content/en/`, `content/pt/`; `config/_default/languages.toml`; `config/_default/module.toml`                                                                                                                                                                                                                                                                                        |
+
+## 5.6 xAPI / LRS security (group)
+
+The group meets the project requirement that **LRS credentials and the LRS endpoint are not exposed in client-side code** as follows.
+
+1. **Secrets and LRS URL in environment only** — Values used to authenticate to the LRS live in a **`.env` file for local development** (never committed; see `.gitignore`) and in **Netlify site environment variables** for production. They are read only by the serverless proxy, not bundled into Twine exports or static assets.
+
+2. **All xAPI posts go through the Netlify function** — The learning content sends statements to **`POST /.netlify/functions/xapi-statement`**, implemented in [`netlify/functions/xapi-statement.mjs`](../../projects/hugoGroupProject/xapi-specification/netlify/functions/xapi-statement.mjs). The function forwards the statement to the real LRS using server-side configuration.
+
+**Runtime evidence (production):** DevTools capture on https://tecaa-isep.netlify.app/ shows the request targeting the Netlify function (no direct client call to the LRS host) and a sample payload containing only statement fields (actor, verb, object), not credentials:
+
+- Request URL and `200 OK`: [`reports/api2.png`](reports/api2.png)
+- Request payload (example `launched` statement): [`reports/api1.png`](reports/api1.png)
+- **Sanitized HAR** exports (full runs, per checklist): listed under **Appendix A** with paths into each member’s `reports/` folder.
 
 ---
 
@@ -235,66 +264,96 @@ The group adopts the **Goal Question Metric (GQM)** method as required by the pr
 
 ### Goal 1
 
-**Goal 1:** Analyse the Hugo documentation site for the purpose of evaluation and improvement with respect to its **structural and functional quality** from the viewpoint of **developers**, in the context of future adoption of xAPI and LRS.
+**Goal 1:** Analyse the Hugo documentation site for evaluation and improvement with respect to its **structural and functional quality** from the viewpoint of **developers**, in the context of future adoption of xAPI and LRS.
 
-| Question (operational)                                                             | Metric                                          | Scale / interpretation                        | Tool(s)                                                          | Procedure (summary)                                                                                                                                  | Evidence location                              |
-| ---------------------------------------------------------------------------------- | ----------------------------------------------- | --------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| Is the documentation professionally written (grammar/style, tone, cognitive load)? | Count of blocking issues + qualitative severity | Count (0 = none); note High/Med/Low per issue | Manual review + optional [Vale](https://vale.sh/) or spell-check | Each owner reviews own EN (and PT if present) pages; optional Vale config in repo; record findings in individual report                              | Individual §2.x; optional `reports/vale-*.txt` |
-| Is the site organised for easy navigation to each primary xAPI guide?              | Clicks from home to owned page; TOC present     | Clicks: integer; TOC: binary (Y/N per page)   | Manual navigation; Hugo `toc` front matter                       | From `/` and `/pt/`, count clicks to each `/docs/xapi/...` primary page; confirm TOC on page                                                         | Individual report + screenshot optional        |
-| Are descriptions technically accurate?                                             | Count of confirmed errors / corrections         | Count                                         | Peer review + IEEE/xAPI spec references                          | Cross-check claims vs spec; log discrepancies                                                                                                        | Individual report                              |
-| Do the primary xAPI pages use a consistent format and structure with each other?   | Alignment with peer pages                       | OK / needs improvement                        | Other `docs/xapi/` pages as reference                            | Each author compares their page to teammates’ pages (front matter, headings, examples, links) and adjusts to match; **no shared checklist document** | Individual report                              |
-| Is each owned page clear for its topic?                                            | Quick self-check                                | Y/N + short note if No                        | —                                                                | Each author re-reads their own page and states whether it clearly covers their scope                                                                 | Individual report                              |
-| Are labels/metadata/nav aids present (title, description, menus, language switch)? | Binary + short checklist                        | Pass/Fail per item                            | Manual + `hugo list` / front matter review                       | Verify `title`, `description`, menu entries, PT/EN switch on sample pages                                                                            | Individual report                              |
+| Question (operational)                                                                                                                                   | Metric                                                                                          | Scale / interpretation                                                        | Tool(s)                                                       | Procedure (summary)                                                                                                                  | Evidence location                        |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------- |
+| Is the documentation **professionally written** (grammar/style, voice, tone, cognitive load)?                                                            | Count of blocking issues + **High/Med/Low** severity notes                                      | Count (0 = none); each issue tagged by severity                               | Manual read; optional [Vale](https://vale.sh/) or spell-check | Review **owned** EN and PT markdown; list issues briefly; optional Vale run with config in repo if used                              | Individual **§2.2**;                     |
+| Is the site **easy to navigate** to each primary guide, with a sensible **TOC** and **working links** (including **EN/PT**)?                             | Click count home → owned page; TOC **Y/N**; **broken link** count (or Pass/Fail after tool run) | Clicks: non-negative integer; TOC: Y/N per language; links: 0 failures target | Manual navigation                                             | From **`/`** and **`/pt/`**, count clicks to each owner’s `/docs/xapi/...` page; confirm TOC;                                        | Individual **§2.1–2.2**;                 |
+| Does each guide include **necessary information for its theme**, use a **layout consistent** with teammate pages, and read **clearly** for its topic?    | Checklist / judgement: **OK** vs **needs improvement** (+ short justification)                  | Ordinal; team interprets “needs improvement” as actionable gaps               | Other `content/.../docs/xapi/` pages as reference             | Compare front matter, heading levels, examples, and cross-links to sibling pages; self-check coverage of the **ownership map** theme | Individual **§2.1–2.2**                  |
+| Are **machine-readable labels and navigation aids** used (`title`, `description`, menus, search/breadcrumbs as the theme provides, **language switch**)? | Checklist: Pass/Fail **per item** (list which failed)                                           | Pass/Fail per sub-item                                                        | `hugo list`, front matter inspection, manual UI check         | Verify metadata on **EN and PT** owned pages; confirm language switch reaches the paired page; menus match group conventions         | Individual **§2.2**; optional screenshot |
 
 ### Goal 2
 
-**Goal 2 (from statement):** Analyse the standalone **Twine** learning story web component for evaluation and improvement with respect to **xAPI tracking**, **structural quality**, and **narrative consistency** (and security in a later revision), from the viewpoint of instructional designers and developers, using an external LRS.
+**Goal 2 (from statement):** Analyse the standalone **Twine** learning story web component for evaluation and improvement with respect to **xAPI tracking**, **structural quality**, and **narrative consistency**, from the viewpoint of instructional designers and developers, using an external LRS.
 
-**Authoring:** [Twine 2](https://twinery.org/2/#/). **LRS:** [lrs.io](https://lrs.io/home/).
+In practice each member answers the same **four operational questions** below. Values, partial conclusions, and **explicit tool reports** are written in **individual report §3.4**; §6.2–6.3 here aggregate across stories.
 
-| Question (operational)                                           | Metric                                           | Scale / interpretation                                                     | Tool(s)                                                                                 | Procedure (summary)                                                                                                                                                                                                                                                               | Evidence location                                             |
-| ---------------------------------------------------------------- | ------------------------------------------------ | -------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| Are LRS credentials and endpoint protected from client exposure? | Binary: secrets absent from repo + client bundle | Pass = no keys/endpoint in git, `public/`, or Twine export; Fail otherwise | `.gitignore` + `rg`/grep on sources and post-build `public/`; optional HAR after deploy | **Credentials and LRS endpoint are kept only in a `.env` file** (local, not committed) and mirrored as **Netlify env vars** when deployed—not embedded in Twine HTML/JS or Hugo static output. **Full verification** (documented grep/HAR) is run **after the site is deployed**. | Individual reports + `reports/security-*.md` _(after deploy)_ |
-| Are learner interactions correctly sent and accepted by the LRS? | Statement success rate                           | % of expected statements seen in LRS vs test script                        | Twine export + browser; **lrs.io** UI/logs                                              | Scripted walkthrough (load → choices → end); compare to expected verb list (initialized/launched, experienced/responded, completed/scored)                                                                                                                                        | Individual §3.x; LRS screenshots/export if available          |
-| Is narrative voice consistent and appropriate for audience?      | Flesch-Kincaid grade level (EN) + short rubric   | Grade level (approx.); rubric 1–5                                          | e.g. Python `textstat`, or online readability with method cited                         | Run on exported passage text; team rubric for tone                                                                                                                                                                                                                                | Individual report                                             |
-| Is story flow logical without dead ends?                         | Dead-end count; avg time per branch (optional)   | Count; seconds optional                                                    | Twine editor + playtest                                                                 | Map passages/links; playtest branches                                                                                                                                                                                                                                             | Individual report; Twine stats PDF per course                 |
+**Authoring:** [Twine 2](https://twinery.org/2/#/). **LRS:** [lrs.io](https://lrs.io/home/). **Local proxy:** `netlify dev` (or deployed site) so `POST /.netlify/functions/xapi-statement` reaches the LRS.
 
-**Twine delivery requirements (statement):** branching, variables, clear **End** passage with final **completed** (or **scored**) statement including **result** where applicable — each individual story must document how these are met; **story statistics PDF** stored in the repository (path pattern under Appendix A).
+| Question (operational)                                                                              | Metric                                                                            | Scale / interpretation                                  | Tool(s)                                                                                                            | Procedure (summary)                                                                                                                                   | Evidence location                                                                                                                                                                  |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Are the **LRS endpoint and credentials** kept off the client (repo, Twine export, built `public/`)? | Pass/fail on “no secrets and no bare LRS URL” in those artefacts                  | Pass / Fail                                             | `.gitignore`; `rg`/grep (or equivalent) on sources + `public/` when built; optional **sanitised HAR** after deploy | Confirm `.env` is not committed; search exported story HTML and static output; optional HAR showing calls only to the site proxy, not to the LRS host | **§5.6**; [`reports/api1.png`](reports/api1.png), [`reports/api2.png`](reports/api2.png); individual **§3.3–3.4** (item 1); per-member `Part1/documentation/<NameNumber>/reports/` |
+| After a **scripted playthrough**, do the **expected verbs** for that story show up in the LRS?      | Share of expected **verb types** observed vs the story’s §3.2 map (e.g. 5/5)      | Fraction or %; interpret against each story’s checklist | Browser; **lrs.io** Statements UI (or LRS export)                                                                  | `netlify dev` or production URL → open story → play to **End** → compare Statements list to **individual §3.2**                                       | Individual **§3.2–3.4** (item 2); screenshot or export under member `reports/`                                                                                                     |
+| Is the **English instructional text** readable and **tonally** appropriate for the audience?        | **Flesch–Kincaid** (or equivalent) on passage body text + short **1–5** tone note | Grade level (approx.); rubric 1–5                       | Python `textstat` or some online tool                                                                              | Strip Harlowe macros/scripts; paste body text; run tool; keep **raw output** for the report                                                           | Individual **§3.4** (item 3); `reports/readability-*` or equivalent under member folder                                                                                            |
+| Is **story flow** sound (**no dead ends**, no broken links)?                                        | Count of dead ends / broken links                                                 | Count (target **0**)                                    | **Twine 2** editor + manual playtest of every branch; optional **Twine statistics PDF**                            | Follow all links from **Start**; confirm every path reaches content or **End**; export stats PDF if required                                          | Individual **§3.4** (item 4); optional `static/stories/xapi-*/stats.pdf` (Appendix A)                                                                                              |
+
+**Twine delivery requirements (statement):** branching, variables, clear **End** passage with final **completed** (or **scored**) statement including **result** where applicable — each story documents how these are met in **§3.1–3.2**; **story statistics PDF** in the repository where required (Appendix A).
 
 ## 6.2 Summary of findings
 
-_(To be completed in Activity 3.)_
+Below we **merge** everyone’s Goal 1 (**§2.2**) and Goal 2 (**§3.4**) tables from the four individual reports into one view. Owner codes match §2.3 (**S1** Miguel, **S2** Guilherme, **S3** Samuel, **S4** Vicente). Full prose, procedures, and file paths stay in each person’s markdown; this section is the group-level snapshot the coursework asked for.
 
-Each member fills metric values and evidence in their **individual report**. The group will add here a **short aggregate table**: one row per metric (or per metric×owner), columns for **value**, **link to individual section**, and **link to raw tool output** (if any). Aggregation rules (e.g. sum of reported issues, all stories must pass the LRS statement test) will be agreed before final submission.
+### Goal 1 — Hugo documentation (structural & functional quality)
+
+Questions are the same four operational rows already defined in **§6.1** above. Cells summarise what each member recorded; a dash means they answered the intent inside another row in their own table (see their **§2.2**).
+
+| Question (operational) — §6.1                                                                                                                         | S1 — Fundamentals                                        | S2 — Structure                                                        | S3 — Optional fields                             | S4 — Validation                                        |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- | --------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------------------------------ |
+| Is the documentation **professionally written** (grammar/style, voice, tone, cognitive load)?                                                         | **0** blocking issues; no High/Med/Low notes             | **0** blocking; technical tone aligned with Doks                      | **0** blocking; PT mirrors EN naturally          | **0** blocking; technical tone consistent              |
+| Is the site **easy to navigate** to each primary guide, with a sensible **TOC** and **working links** (including **EN/PT**)?                          | **1** click home → page; TOC **Y** EN/PT; links **Pass** | **2** clicks home → page; TOC **Y** EN/PT; manual link check **Pass** | **2** clicks; TOC **Y**; links **Pass**          | Manual navigation; **0** broken links in checked paths |
+| Does each guide include **necessary information for its theme**, use a **layout consistent** with teammate pages, and read **clearly** for its topic? | **OK** (thematic + peer layout)                          | **OK** (mandatory fields theme)                                       | **OK** (optional-field theme + team patterns)    | **OK** (validation/IRI theme + structure)              |
+| Are **machine-readable labels and navigation aids** used (`title`, `description`, menus, breadcrumbs, **language switch**)?                           | All sub-items **Pass** (see `hugo-list-output.csv`)      | **Pass** EN/PT front matter + language switch                         | **Pass** (`slug` `optional-fields`, `toc`, etc.) | **Pass** (`validation`, `toc`, `draft: false`, etc.)   |
+
+### Goal 2 — Twine stories (xAPI tracking, structure, narrative)
+
+Same four operational questions as **§6.1 Goal 2**. Verb fractions are **against each story’s own §3.2 map**
+
+| Question (operational) — §6.1                                                   | S1 — `xapi-fundamentals`                                                                                                                                                                    | S2 — `xapi-structure`                                                                                                                                                                                  | S3 — `xapi-optional`                                                                                                             | S4 — `xapi-validation`                                                                                                      |
+| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Are the **LRS endpoint and credentials** kept off the client?                   | **Pass** — static search + **sanitized HAR** + screenshots ([`../MiguelPovoas1201716/reports/tecaa-isep.netlify.app.har`](../MiguelPovoas1201716/reports/tecaa-isep.netlify.app.har), §3.3) | **Pass** — static + **HAR** ([`../GuilhermeMelo1211008/reports/core-structure.har`](../GuilhermeMelo1211008/reports/core-structure.har), §3.3)                                                         | **Pass** — static + **HAR** ([`../SamuelPinto1221316/reports/lrsRunHar.har`](../SamuelPinto1221316/reports/lrsRunHar.har), §3.3) | **Pass** — static scan + proxy-only send path; **sanitized HAR** still to archive per own §3.3 checklist line               |
+| After a **scripted playthrough**, do the **expected verbs** show up in the LRS? | **5/5** types vs map (incl. double `responded` on retry path) — [`../MiguelPovoas1201716/reports/lrs-run.png`](../MiguelPovoas1201716/reports/lrs-run.png)                                  | **3/3** vs map (`launched`, `responded`, `completed`) — LRS screenshot in §3.2                                                                                                                         | **3/3** vs map (`initialized`, `responded`, `completed`) — `lrsRun.png` in §3.2                                                  | **5/5** expected by design (`initialized` … `completed`) — implementation described §3.2; runtime capture as per individual |
+| Is the **English instructional text** readable and **tonally** appropriate?     | F–K **~9.0**; FRE **52** — [`../MiguelPovoas1201716/reports/flesch-kincaid-readability-report.pdf`](../MiguelPovoas1201716/reports/flesch-kincaid-readability-report.pdf)                   | F–K **~8–9** (fairly difficult), engineer-appropriate — [`../GuilhermeMelo1211008/reports/flesch-kincaid-readability-twine.pdf`](../GuilhermeMelo1211008/reports/flesch-kincaid-readability-twine.pdf) | “Easy” / instructional (Flesch PDF: `fleschKincaidTwineReadabilityReport.pdf`)                                                   | Readable technical English (qualitative; see §3.4)                                                                          |
+| Is **story flow** sound (**no dead ends**, no broken links)?                    | **0** dead ends — stats PDF in `reports/`                                                                                                                                                   | **0** — all quiz paths to **End**                                                                                                                                                                      | **0** — linear quiz to **End**                                                                                                   | **0** — branching quiz loops then **End**                                                                                   |
+
+**Where to look:** [`../MiguelPovoas1201716/IndividualReport_MiguelPovoas1201716.md`](../MiguelPovoas1201716/IndividualReport_MiguelPovoas1201716.md) §2.2–§3.4; [`../GuilhermeMelo1211008/IndividualReport_GuilhermeMelo1211008.md`](../GuilhermeMelo1211008/IndividualReport_GuilhermeMelo1211008.md) §2.2–§3.4; [`../SamuelPinto1221316/IndividualReport_SamuelPinto1221316.md`](../SamuelPinto1221316/IndividualReport_SamuelPinto1221316.md) §2.2–§3.4; [`../VicenteTeixeira1210974/IndividualReport_VicenteTeixeira1210974.md`](../VicenteTeixeira1210974/IndividualReport_VicenteTeixeira1210974.md) §2.2–§3.4.
 
 ## 6.3 Goal achievement analysis
 
-_(To be completed in Activity 3.)_
+**Goal 1 — did we meet the plan?** For all four owned page pairs (Fundamentals, Structure, Optional fields, Validation), the combined table in §6.2 shows **no** unresolved “needs improvement” flags: writing passes, navigation and bilingual switching work on the deployed site, and metadata lines up with the Doks layout we agreed in §4. The main **trade-off** was time: keeping **Portuguese** pages as full counterparts to English (not shallow stubs) cost review cycles, but the group decided early that bilingual Hugo content was non-negotiable for the brief, so we absorbed that cost in scheduling rather than dropping PT.
 
-Planned content: (1) whether Goal 1 thresholds were met and main gaps for the documentation set; (2) whether Goal 2 thresholds were met for stories and xAPI behaviour; (3) trade-offs (e.g. depth of PT translation vs time). **Security:** confirm post-deploy that secrets stayed in `.env` / Netlify env only and never appeared in client or static output.
+**Goal 2 — did we meet the plan?** Every Twine export posts xAPI only to **`/.netlify/functions/xapi-statement`**; nobody ships LRS Basic auth or a bare LRS URL in `static/stories/`. Verb coverage **matches each story’s own map** (quiz-only stories naturally emit fewer verb _types_ than richer flows). **Readability** sits in a band that fits **developers / master students**, which is exactly the audience from the project statement.
+
+**Security (cross-cutting):** Post-deploy checks in **§5.6** plus the **HAR** files listed in Appendix A line up with the checklist: browser traffic stays on our origin for xAPI posts; secrets remain in **`.env`** (local) and **Netlify** env (production).
 
 ---
 
 # 7. Conclusion
 
-Summarise:
+We set out to deliver **Theme 1** a technical documentation site on **xAPI core mechanics and compliance**, bilingual where Hugo requires it, with one **Twine** story per member and **secure** LRS integration. That is what shipped in **Part 1**: the site is public on **Netlify**, the four guides cover the ownership split in §2.3, and each story is playable from **`/stories/xapi-*/`** with statements visible in our shared test LRS.
 
-- final decision
-- key reasons
-- main findings
+**Why this solution:** Hugo + Thulite/Doks gave us multilingual docs without Docsy (course constraint), and **Netlify Functions** gave us the smallest server-side hop we needed to keep credentials off static exports—no bespoke backend, which mattered for a short academic block.
+
+**Main takeaways:** (1) the **GQM** tables in §6.2 show Goal 1 and Goal 2 thresholds met for every member; (2) **traceability** is preserved because evidence lives under each student folder and in `static/stories/`; (3) the remaining polish is mostly **evidence hygiene** (one pending HAR) rather than design changes.
 
 ---
 
 # References
 
-List all references used.
+- **Twine 2**: https://twinery.org/2/#/
+- **xAPI** / ADL vocabulary references (as used in content): https://github.com/adlnet/xAPI_Vocabulary
+- **Netlify** (hosting + Functions): https://docs.netlify.com/
+- **lrs.io** (development LRS): https://lrs.io/home
 
 ---
 
 # Appendix A – Evidence index
 
-- Tool reports: `Part1/documentation/reports/` or `Part1/reports/` _(create when first outputs exist)_
-- GQM notes / scripts: same as above or `Part1/gqm/` _(optional)_
-- Security artefacts: `reports/security-*.md` (grep logs, optional HAR) **after deploy**; `.env` remains local-only (see `.gitignore`)
-- xAPI proxy (server-side): `Part1/projects/hugoGroupProject/xapi-specification/netlify/functions/xapi-statement.mjs`
-- Twine stats (PDF): `Part1/projects/hugoGroupProject/xapi-specification/static/stories/xapi-*/stats.pdf` _(or path agreed per story)_
+- **Individual tool reports:** `Part1/documentation/<NameNumber>/reports/` (Flesch PDFs, `hugo list` CSVs, Twine stats PDFs, LRS screenshots, **sanitized HAR** where uploaded)
+- **Sanitized HAR files (Part 1 checklist):**
+  - [`../MiguelPovoas1201716/reports/tecaa-isep.netlify.app.har`](../MiguelPovoas1201716/reports/tecaa-isep.netlify.app.har) (S1 — full story run, production)
+  - [`../GuilhermeMelo1211008/reports/core-structure.har`](../GuilhermeMelo1211008/reports/core-structure.har) (S2)
+  - [`../SamuelPinto1221316/reports/lrsRunHar.har`](../SamuelPinto1221316/reports/lrsRunHar.har) (S3)
+- **Group screenshots (proxy / payload):** [`reports/api1.png`](reports/api1.png), [`reports/api2.png`](reports/api2.png) — see **§5.6**
+- **xAPI proxy (server-side):** [`../../projects/hugoGroupProject/xapi-specification/netlify/functions/xapi-statement.mjs`](../../projects/hugoGroupProject/xapi-specification/netlify/functions/xapi-statement.mjs)
+- `.env` remains local-only; see `.gitignore` in the Hugo project root

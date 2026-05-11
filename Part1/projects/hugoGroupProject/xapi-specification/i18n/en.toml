@@ -1,26 +1,32 @@
+[get_started]
+other = "Get started in xAPI"
+
+["get-started"]
+other = "Get started in xAPI"
+
 [home_feature_update_title]
-other = "Update content"
+other = "Fundamentals"
 
 [home_feature_update_body]
-other = "Edit <code>content/en/_index.md</code> to see this page change."
+other = "Start with xAPI basics: purpose, Actor-Verb-Object model, LRS role, and SCORM comparison. <a href=\"/docs/xapi/fundamentals/\">Open guide</a>."
 
 [home_feature_add_title]
-other = "Add new content"
+other = "Core Structure"
 
 [home_feature_add_body]
-other = "Add Markdown files under <code>content/en/</code> (or <code>content/pt/</code>) to create new pages."
+other = "Review mandatory statement fields, JSON shape, and baseline structure rules. <a href=\"/docs/xapi/structure/\">Open guide</a>."
 
 [home_feature_config_title]
-other = "Configure your site"
+other = "Optional Fields"
 
 [home_feature_config_body]
-other = "Edit your config in <code>config/_default/params.toml</code>."
+other = "Learn when and how to use <code>result</code>, <code>context</code>, <code>timestamp</code>, and <code>authority</code>. <a href=\"/docs/xapi/optional-fields/\">Open guide</a>."
 
 [home_feature_read_title]
-other = "Read the docs"
+other = "Validation and IRIs"
 
 [home_feature_read_body]
-other = "Learn more in the <a href=\"https://getdoks.org/\">Docs</a>."
+other = "Apply validation checks and IRI quality criteria for interoperability. <a href=\"/docs/xapi/validation/\">Open guide</a>."
 
 [home_footer_cta_title]
 other = "Start building with Doks today"

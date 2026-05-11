@@ -110,7 +110,7 @@ O xAPI permite acompanhar **experiências de aprendizagem personalizadas** com u
 
 Os sistemas podem trocar dados com formatos normalizados partilhados, permitindo a **integração entre diferentes plataformas e tecnologias**.
 
-> 📄 Para detalhes sobre como os IRIs e os identificadores garantem a interoperabilidade, consulte [**Validação e IRIs**](/docs/xapi/validation/) (documentação em inglês).
+> 📄 Para detalhes sobre como os IRIs e os identificadores garantem a interoperabilidade, consulte [**Validação e IRIs**](/docs/xapi/validation/).
 
 ### Acompanhamento para além do LMS
 

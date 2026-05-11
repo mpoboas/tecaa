@@ -1,0 +1,242 @@
+:: StoryTitle
+xAPI Core Structure Assessment
+
+:: StoryData
+{
+  "ifid": "STRUCTURE-1234-5678-xAPI-CORE",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Start"
+}
+
+:: StoryInit [startup]
+(set: $score to 0)
+(set: $q1_answer to "")
+(set: $q6_answer to "")
+<script>
+    // Initialized/Launched event
+    if (window.xapi) {
+        xapi.sendXAPI("launched", "http://adlnet.gov/expapi/verbs/launched", "xAPI Core Structure Course", "course");
+    }
+</script>
+
+:: Start
+Welcome to the xAPI Core Structure Course!
+In this interactive story, we will test your knowledge about the Core Structure of an xAPI statement.
+
+Are you ready?
+[[Yes, let's begin!->Question 1]]
+
+:: Question 1
+An xAPI statement follows a simple conceptual model describing an action.
+
+What is the mandatory component used to identify //who// performed the action?
+
+(input: bind $q1_answer)
+
+[[Submit Answer->Q1Check]]
+
+:: Q1Check
+(set: _ans to (lowercase: (trimmed: $q1_answer)))
+(if: _ans is "actor")[
+    (set: $score to it + 1)
+    <script>xapi.sendXAPI("responded", "http://adlnet.gov/expapi/verbs/responded", "Question 1: Who performed it", "interaction", true);</script>
+    Correct! The ''Actor'' identifies the entity (e.g., a user or group) performing the action.
+](else:)[
+    <script>xapi.sendXAPI("responded", "http://adlnet.gov/expapi/verbs/responded", "Question 1: Who performed it", "interaction", false) </script>
+    Incorrect. The correct answer was ''Actor''.
+]
+
+[[Next Question->Question 2]]
+
+:: Question 2
+Now that we have the Actor, we need to know what action they performed.
+
+Which requirement ensures that the action's meaning remains consistent across systems?
+[[It must be associated with a unique IRI/URI->Q2Correct]]
+[[It just needs to be a standard English word->Q2Wrong]]
+
+:: Q2Correct
+(set: $score to it + 1)
+<script>xapi.sendXAPI("responded", "http://adlnet.gov/expapi/verbs/responded", "Question 2: Verb uniqueness", "interaction", true);</script>
+Correct! The ''Verb'' uses a unique identifier (ID as an IRI) to avoid ambiguity.
+
+[[Next Question->Question 3]]
+
+:: Q2Wrong
+<script>xapi.sendXAPI("responded", "http://adlnet.gov/expapi/verbs/responded", "Question 2: Verb uniqueness", "interaction", false);</script>
+Incorrect. Verbs must be associated with a unique identifier (IRI) to ensure semantic consistency.
+
+[[Next Question->Question 3]]
+
+:: Question 3
+The Actor and Verb are ready. Now, what defines the //target// of the action (e.g., a course or an assessment)?
+[[The Subject->Q3Wrong]]
+[[The Object->Q3Correct]]
+
+:: Q3Correct
+(set: $score to it + 1)
+<script>xapi.sendXAPI("responded", "http://adlnet.gov/expapi/verbs/responded", "Question 3: Target of action", "interaction", true);</script>
+Correct! The ''Object'' provides context about what the action relates to.
+
+[[Next Question->Question 4]]
+
+:: Q3Wrong
+<script>xapi.sendXAPI("responded", "http://adlnet.gov/expapi/verbs/responded", "Question 3: Target of action", "interaction", false);</script>
+Incorrect. The correct term is the ''Object''.
+
+[[Next Question->Question 4]]
+
+:: Question 4
+Finally, which mandatory field specifies which specification version was used, preventing compatibility issues?
+[[Version->Q4Correct]]
+[[Timestamp->Q4Wrong]]
+
+:: Q4Correct
+(set: $score to it + 1)
+<script>xapi.sendXAPI("responded", "http://adlnet.gov/expapi/verbs/responded", "Question 4: Specification field", "interaction", true);</script>
+Correct! The ''Version'' field tracks the xAPI spec version of the statement.
+
+[[To JSON Comparison->Question 5]]
+
+:: Q4Wrong
+<script>xapi.sendXAPI("responded", "http://adlnet.gov/expapi/verbs/responded", "Question 4: Specification field", "interaction", false);</script>
+Incorrect. The correct answer is ''Version''.
+
+[[To JSON Comparison->Question 5]]
+
+:: Question 5
+Before the final challenge, look at these two statements. Which one implements the Core Structure correctly?
+
+''Statement A:''
+<pre>
+&lbrace; 
+  "user": "Guilherme", 
+  "action": "completed", 
+  "target": "test" 
+&rbrace;
+</pre>
+
+[[Select Statement A->Q5Wrong]]
+
+''Statement B:''
+<pre>
+&lbrace;
+  "actor": &lbrace; 
+    "name": "Guilherme", 
+    "mbox": "mailto:guilherme@example.com" 
+  &rbrace;,
+  "verb": &lbrace; 
+    "id": "http://adlnet.gov/expapi/verbs/completed" 
+  &rbrace;,
+  "object": &lbrace; 
+    "id": "http://example.com/test" 
+  &rbrace;,
+  "version": "1.0.3"
+&rbrace;
+</pre>
+
+[[Select Statement B->Q5Correct]]
+
+:: Q5Correct
+(set: $score to it + 1)
+<script>xapi.sendXAPI("responded", "http://adlnet.gov/expapi/verbs/responded", "Question 5: Valid Statement", "interaction", true);</script>
+Correct! A valid xAPI statement strictly requires the "actor", "verb", "object", and "version" keys, rather than arbitrary strings.
+
+[[To the Final Statement Construction->Question 6]]
+
+:: Q5Wrong
+<script>xapi.sendXAPI("responded", "http://adlnet.gov/expapi/verbs/responded", "Question 5: Valid Statement", "interaction", false);</script>
+Incorrect. An xAPI statement strictly requires standard keys: "actor", "verb", "object", and "version", rather than custom naming like user/action/target.
+
+[[To the Final Statement Construction->Question 6]]
+
+:: Question 6
+Final Challenge! Now, apply everything you've learned.
+Write a minimal xAPI statement in JSON format that includes the four mandatory root keys.
+
+(input-box: bind $q6_answer, "", 8)
+
+[[Submit Statement->Q6Check]]
+
+:: Q6Check
+(set: _ans to (lowercase: $q6_answer))
+(if: _ans contains "actor" and _ans contains "verb" and _ans contains "object" and _ans contains "version")[
+    (set: $score to it + 1)
+    <script>xapi.sendXAPI("responded", "http://adlnet.gov/expapi/verbs/responded", "Question 6: Complete Statement", "interaction", true);</script>
+    Excellent! You've successfully constructed a valid xAPI statement structure.
+](else:)[
+    <script>xapi.sendXAPI("responded", "http://adlnet.gov/expapi/verbs/responded", "Question 6: Complete Statement", "interaction", false);</script>
+    Not quite. A valid xAPI statement must be a valid JSON object containing the "actor", "verb", "object", and "version" keys.
+]
+
+[[See Results->End]]
+
+:: End
+Thank you for completing the xAPI Core Structure Course!
+
+Your score: (print: $score) out of 6.
+
+(if: $score is 6)[
+    Great job! You perfectly understand the Actor-Verb-Object model.
+](else:)[
+    You might want to review the Core Structure documentation!
+]
+
+<script>
+    // We can't access Harlowe's $score directly in global script, but we can pass it via a bridge element
+</script>
+<span id="score-bridge" style="display:none;">$score</span>
+<script>
+    var s = parseInt(document.getElementById('score-bridge').textContent);
+    xapi.sendCompletion(s, 6);
+</script>
+
+:: StoryJavaScript [script]
+window.xapi = window.xapi || {};
+
+xapi.sendXAPI = function(verbDisplay, verbId, objectName, objectType, success) {
+  var statement = {
+    actor: { name: "Guilherme", mbox: "mailto:guilherme@example.com" },
+    verb: { id: verbId, display: { "en-US": verbDisplay } },
+    object: {
+      id: "http://example.com/xapi/structure/" + objectName.replace(/\s+/g, '-').toLowerCase(),
+      definition: { name: { "en-US": objectName }, type: "http://adlnet.gov/expapi/activities/" + objectType }
+    }
+  };
+  
+  if (success !== undefined) {
+    statement.result = { success: success };
+  }
+  
+  var apiBase = window.location.port === "1313" ? "http://localhost:8888" : "";
+  
+  fetch(apiBase + "/.netlify/functions/xapi-statement", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(statement)
+  }).catch(e => console.error("xAPI Tracking failed", e));
+};
+
+xapi.sendCompletion = function(score, maxScore) {
+  var statement = {
+    actor: { name: "Guilherme", mbox: "mailto:guilherme@example.com" },
+    verb: { id: "http://adlnet.gov/expapi/verbs/completed", display: { "en-US": "completed" } },
+    object: {
+      id: "http://example.com/xapi/structure/course",
+      definition: { name: { "en-US": "xAPI Core Structure Course" }, type: "http://adlnet.gov/expapi/activities/course" }
+    },
+    result: {
+      score: { raw: score, min: 0, max: maxScore, scaled: score / maxScore },
+      success: (score / maxScore) >= 0.5
+    }
+  };
+
+  var apiBase = window.location.port === "1313" ? "http://localhost:8888" : "";
+
+  fetch(apiBase + "/.netlify/functions/xapi-statement", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(statement)
+  }).catch(e => console.error("xAPI Completion failed", e));
+};

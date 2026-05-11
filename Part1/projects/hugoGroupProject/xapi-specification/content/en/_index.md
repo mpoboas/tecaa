@@ -1,6 +1,6 @@
 ---
 title: "Experience API"
-description: ""
+description: "xAPI documentation hub for core mechanics and compliance, with a guided path through fundamentals, statement structure, optional fields, and validation."
 lead: "Explore the xAPI (Experience API) ecosystem through detailed fundamentals, guides, and reference documentation designed for modern learning systems."
 date: 2023-09-07T16:33:54+02:00
 lastmod: 2026-02-16T16:10:57+01:00

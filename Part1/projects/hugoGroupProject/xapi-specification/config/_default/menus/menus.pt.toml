@@ -4,9 +4,9 @@
   weight = 10
 
 [[main]]
-  name = "Blogue"
-  url = "/blog/"
-  weight = 30
+  name = "Guias"
+  url = "/pt/docs/guides/pre-requisitos/"
+  weight = 20
 
 [[social]]
   name = "GitHub"

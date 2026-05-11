@@ -16,9 +16,9 @@
   weight = 10
 
 [[main]]
-  name = "Blog"
-  url = "/blog/"
-  weight = 30
+  name = "Guides"
+  url = "/docs/guides/prerequisites/"
+  weight = 20
 
 # [[social]]
 #   name = "Twitter"

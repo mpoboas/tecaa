@@ -9,7 +9,9 @@
       {{ with site.GetPage "/docs/xapi/fundamentals" -}}
       <a class="btn btn-primary btn-cta rounded-pill btn-lg my-3" href="{{ .RelPermalink }}" role="button">{{ i18n "get_started" }}</a>
       {{- end }}
-      {{ .Content }}
+      <div class="text-start mt-4">
+        {{ .Content }}
+      </div>
     </div>
   </div>
 </section>
