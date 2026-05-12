@@ -11,9 +11,49 @@
 <tw-story><noscript><tw-noscript>JavaScript needs to be enabled to play xAPI Core Structure Assessment.</tw-noscript></noscript></tw-story>
 <tw-storydata name="xAPI Core Structure Assessment" startnode="2" creator="Twine" creator-version="2.12.0" format="Harlowe" format-version="3.3.9" ifid="STRUCTURE-1234-5678-xAPI-CORE" options="" tags="" zoom="1" hidden><style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css"></style><script role="script" id="twine-user-script" type="text/twine-javascript">window.xapi = window.xapi || {};
 
+var LEARNER_STORAGE_KEY = 'tecaa_learner_name';
+
+function slugLearnerName(name) {
+  return String(name || '').trim().toLowerCase().replace(/\s+/g, '.').replace(/[^a-z0-9._-]/g, '') || 'learner';
+}
+function readStoredLearnerName() {
+  try {
+    return sessionStorage.getItem(LEARNER_STORAGE_KEY) || '';
+  } catch (e) {
+    return '';
+  }
+}
+function storeLearnerName(name) {
+  var trimmed = String(name || '').trim();
+  if (!trimmed) return '';
+  try {
+    sessionStorage.setItem(LEARNER_STORAGE_KEY, trimmed);
+  } catch (err) {}
+  return trimmed;
+}
+if (!window.__tecaaLearnerInputBound) {
+  window.__tecaaLearnerInputBound = true;
+  document.addEventListener(
+    'input',
+    function (e) {
+      if (e.target && e.target.matches('tw-passage input[type="text"]')) {
+        storeLearnerName(e.target.value);
+      }
+    },
+    true
+  );
+}
+function learnerActor() {
+  var learnerName = readStoredLearnerName();
+  if (learnerName) {
+    return { name: learnerName, mbox: 'mailto:' + slugLearnerName(learnerName) + '@example.org' };
+  }
+  return { name: 'Anonymous learner', mbox: 'mailto:anon@example.org' };
+}
+
 xapi.sendXAPI = function(verbDisplay, verbId, objectName, objectType, success) {
   var statement = {
-    actor: { name: "Guilherme", mbox: "mailto:guilherme@example.com" },
+    actor: learnerActor(),
     verb: { id: verbId, display: { "en-US": verbDisplay } },
     object: {
       id: "http://example.com/xapi/structure/" + objectName.replace(/\s+/g, '-').toLowerCase(),
@@ -36,7 +76,7 @@ xapi.sendXAPI = function(verbDisplay, verbId, objectName, objectType, success) {
 
 xapi.sendCompletion = function(score, maxScore) {
   var statement = {
-    actor: { name: "Guilherme", mbox: "mailto:guilherme@example.com" },
+    actor: learnerActor(),
     verb: { id: "http://adlnet.gov/expapi/verbs/completed", display: { "en-US": "completed" } },
     object: {
       id: "http://example.com/xapi/structure/course",
@@ -57,17 +97,27 @@ xapi.sendCompletion = function(score, maxScore) {
   }).catch(e => console.error("xAPI Completion failed", e));
 };</script><tw-passagedata pid="1" name="StoryInit" tags="startup" position="25,25" size="100,100">(set: $score to 0)
 (set: $q1_answer to &quot;&quot;)
-(set: $q6_answer to &quot;&quot;)
-&lt;script&gt;
-    // Initialized/Launched event
-    if (window.xapi) {
-        xapi.sendXAPI(&quot;launched&quot;, &quot;http://adlnet.gov/expapi/verbs/launched&quot;, &quot;xAPI Core Structure Course&quot;, &quot;course&quot;);
-    }
-&lt;/script&gt;</tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="150,25" size="100,100">Welcome to the xAPI Core Structure Course!
+(set: $q6_answer to &quot;&quot;)</tw-passagedata><tw-passagedata pid="2" name="Start" tags="" position="150,25" size="100,100">(set: $learner_name to &quot;&quot;)
+Welcome to the xAPI Core Structure Course!
 In this interactive story, we will test your knowledge about the Core Structure of an xAPI statement.
 
-Are you ready?
-[[Yes, let&#39;s begin!-&gt;Question 1]]</tw-passagedata><tw-passagedata pid="3" name="Question 1" tags="" position="275,25" size="100,100">An xAPI statement follows a simple conceptual model describing an action.
+What is your name?
+
+(input: bind $learner_name)
+
+(live: 0.5s)[
+(if: (trimmed: $learner_name) is not &quot;&quot;)[
+[[Yes, let&#39;s begin!-&gt;Question 1]]
+](else:)[
+Enter your name to continue.
+]
+]</tw-passagedata><tw-passagedata pid="3" name="Question 1" tags="" position="275,25" size="100,100">&lt;script&gt;
+if (window.xapi) {
+    xapi.sendXAPI(&quot;launched&quot;, &quot;http://adlnet.gov/expapi/verbs/launched&quot;, &quot;xAPI Core Structure Course&quot;, &quot;course&quot;);
+}
+&lt;/script&gt;
+
+An xAPI statement follows a simple conceptual model describing an action.
 
 What is the mandatory component used to identify //who// performed the action?
 

@@ -17,8 +17,38 @@ xAPI Validation and IRIs
   window.tecaaXapi = {};
   var PROXY_PATH = '/.netlify/functions/xapi-statement';
   var sessionStart = null;
-  var actorId = localStorage.getItem('tecaa_actor') || ('anon-' + Math.random().toString(36).slice(2, 10));
-  localStorage.setItem('tecaa_actor', actorId);
+  var LEARNER_STORAGE_KEY = 'tecaa_learner_name';
+
+  function slugLearnerName(name) {
+    return String(name || '').trim().toLowerCase().replace(/\s+/g, '.').replace(/[^a-z0-9._-]/g, '') || 'learner';
+  }
+  function readStoredLearnerName() {
+    try {
+      return sessionStorage.getItem(LEARNER_STORAGE_KEY) || '';
+    } catch (e) {
+      return '';
+    }
+  }
+  function storeLearnerName(name) {
+    var trimmed = String(name || '').trim();
+    if (!trimmed) return '';
+    try {
+      sessionStorage.setItem(LEARNER_STORAGE_KEY, trimmed);
+    } catch (err) {}
+    return trimmed;
+  }
+  if (!window.__tecaaLearnerInputBound) {
+    window.__tecaaLearnerInputBound = true;
+    document.addEventListener(
+      'input',
+      function (e) {
+        if (e.target && e.target.matches('tw-passage input[type="text"]')) {
+          storeLearnerName(e.target.value);
+        }
+      },
+      true
+    );
+  }
 
   window.tecaaXapi.markSessionStart = function () {
     sessionStart = new Date();
@@ -31,11 +61,15 @@ xAPI Validation and IRIs
   };
 
   window.tecaaXapi.base = function (verbId, verbDisplay) {
+    var learnerName = readStoredLearnerName();
+    var actor = learnerName
+      ? { name: learnerName, mbox: 'mailto:' + slugLearnerName(learnerName) + '@example.org' }
+      : {
+          name: 'anon-' + Math.random().toString(36).slice(2, 10),
+          mbox: 'mailto:anon@example.org'
+        };
     return {
-      actor: {
-        name: actorId,
-        mbox: 'mailto:' + actorId + '@example.org'
-      },
+      actor: actor,
       verb: {
         id: verbId,
         display: { 'en-US': verbDisplay }
@@ -69,6 +103,28 @@ xAPI Validation and IRIs
 :: Start
 (set: $score to 0)
 (set: $steps to 0)
+(set: $learner_name to "")
+
+Welcome to **xAPI Validation and IRIs**.
+
+In this short module you will review:
+- mandatory xAPI fields
+- IRI quality criteria
+- one validation decision with feedback
+
+What is your name?
+
+(input: bind $learner_name)
+
+(live: 0.5s)[
+(if: (trimmed: $learner_name) is not "")[
+[[Begin->ValidationIntro]]
+](else:)[
+Enter your name to continue.
+]
+]
+
+:: ValidationIntro
 (set: $steps to $steps + 1)
 
 <script>
@@ -80,23 +136,6 @@ if (window.tecaaXapi) {
       'initialized'
     )
   );
-}
-</script>
-
-Welcome to **xAPI Validation and IRIs**.
-
-In this short module you will review:
-- mandatory xAPI fields
-- IRI quality criteria
-- one validation decision with feedback
-
-[[Begin->ValidationIntro]]
-
-:: ValidationIntro
-(set: $steps to $steps + 1)
-
-<script>
-if (window.tecaaXapi) {
   window.tecaaXapi.send(
     window.tecaaXapi.base(
       'http://adlnet.gov/expapi/verbs/launched',

@@ -13,21 +13,31 @@ xAPI Core Structure Assessment
 (set: $score to 0)
 (set: $q1_answer to "")
 (set: $q6_answer to "")
-<script>
-    // Initialized/Launched event
-    if (window.xapi) {
-        xapi.sendXAPI("launched", "http://adlnet.gov/expapi/verbs/launched", "xAPI Core Structure Course", "course");
-    }
-</script>
 
 :: Start
+(set: $learner_name to "")
 Welcome to the xAPI Core Structure Course!
 In this interactive story, we will test your knowledge about the Core Structure of an xAPI statement.
 
-Are you ready?
+What is your name?
+
+(input: bind $learner_name)
+
+(live: 0.5s)[
+(if: (trimmed: $learner_name) is not "")[
 [[Yes, let's begin!->Question 1]]
+](else:)[
+Enter your name to continue.
+]
+]
 
 :: Question 1
+<script>
+if (window.xapi) {
+    xapi.sendXAPI("launched", "http://adlnet.gov/expapi/verbs/launched", "xAPI Core Structure Course", "course");
+}
+</script>
+
 An xAPI statement follows a simple conceptual model describing an action.
 
 What is the mandatory component used to identify //who// performed the action?
@@ -195,9 +205,49 @@ Your score: (print: $score) out of 6.
 :: StoryJavaScript [script]
 window.xapi = window.xapi || {};
 
+var LEARNER_STORAGE_KEY = 'tecaa_learner_name';
+
+function slugLearnerName(name) {
+  return String(name || '').trim().toLowerCase().replace(/\s+/g, '.').replace(/[^a-z0-9._-]/g, '') || 'learner';
+}
+function readStoredLearnerName() {
+  try {
+    return sessionStorage.getItem(LEARNER_STORAGE_KEY) || '';
+  } catch (e) {
+    return '';
+  }
+}
+function storeLearnerName(name) {
+  var trimmed = String(name || '').trim();
+  if (!trimmed) return '';
+  try {
+    sessionStorage.setItem(LEARNER_STORAGE_KEY, trimmed);
+  } catch (err) {}
+  return trimmed;
+}
+if (!window.__tecaaLearnerInputBound) {
+  window.__tecaaLearnerInputBound = true;
+  document.addEventListener(
+    'input',
+    function (e) {
+      if (e.target && e.target.matches('tw-passage input[type="text"]')) {
+        storeLearnerName(e.target.value);
+      }
+    },
+    true
+  );
+}
+function learnerActor() {
+  var learnerName = readStoredLearnerName();
+  if (learnerName) {
+    return { name: learnerName, mbox: 'mailto:' + slugLearnerName(learnerName) + '@example.org' };
+  }
+  return { name: 'Anonymous learner', mbox: 'mailto:anon@example.org' };
+}
+
 xapi.sendXAPI = function(verbDisplay, verbId, objectName, objectType, success) {
   var statement = {
-    actor: { name: "Guilherme", mbox: "mailto:guilherme@example.com" },
+    actor: learnerActor(),
     verb: { id: verbId, display: { "en-US": verbDisplay } },
     object: {
       id: "http://example.com/xapi/structure/" + objectName.replace(/\s+/g, '-').toLowerCase(),
@@ -220,7 +270,7 @@ xapi.sendXAPI = function(verbDisplay, verbId, objectName, objectType, success) {
 
 xapi.sendCompletion = function(score, maxScore) {
   var statement = {
-    actor: { name: "Guilherme", mbox: "mailto:guilherme@example.com" },
+    actor: learnerActor(),
     verb: { id: "http://adlnet.gov/expapi/verbs/completed", display: { "en-US": "completed" } },
     object: {
       id: "http://example.com/xapi/structure/course",
