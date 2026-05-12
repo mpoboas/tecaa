@@ -1,11 +1,11 @@
 [[main]]
   name = "Documentação"
-  url = "/docs/xapi/fundamentals/"
+  url = "/pt/docs/xapi/fundamentals/"
   weight = 10
 
 [[main]]
-  name = "Guias"
-  url = "/pt/docs/guides/pre-requisitos/"
+  name = "Workshop"
+  url = "/pt/docs/guides/hands-on-workshop/"
   weight = 20
 
 [[social]]

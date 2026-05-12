@@ -16,8 +16,8 @@
   weight = 10
 
 [[main]]
-  name = "Guides"
-  url = "/docs/guides/prerequisites/"
+  name = "Workshop"
+  url = "/docs/guides/hands-on-workshop/"
   weight = 20
 
 # [[social]]

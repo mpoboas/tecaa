@@ -6,7 +6,7 @@
 - Unit: TECAA
 - Part: Project (Second Part)
 - Report Type: Individual Report
-- Student Name: Student 1
+- Student Name: Student 3
 - Student ID: 1223344
 - Group ID: Group X
 - Repository Name: `TECAA20252026_Group X`

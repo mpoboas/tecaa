@@ -106,6 +106,10 @@
   source = "assets"
   target = "assets"
 
+[[mounts]]
+  source = "static/hands-on-workshop"
+  target = "assets/hands-on-workshop"
+
 ## static
 [[mounts]]
   source = "node_modules/@thulite/doks-core/static"

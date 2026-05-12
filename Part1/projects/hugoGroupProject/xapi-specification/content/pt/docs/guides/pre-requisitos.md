@@ -1,34 +1,44 @@
 ---
 title: "Pré-requisitos do workshop"
+description: "Preparação antes do workshop prático de xAPI."
 slug: "pre-requisitos"
-description: "Lista de verificação com o que deve estar preparado antes do workshop hands-on de xAPI."
 summary: ""
-date: 2026-05-08T00:00:00Z
-lastmod: 2026-05-08T00:00:00Z
+date: 2026-05-12T00:00:00Z
+lastmod: 2026-05-12T00:00:00Z
 draft: false
 weight: 810
 toc: true
-params:
-  seo:
-    title: ""
-    description: ""
-    canonical: ""
-    robots: ""
 ---
 
-Antes do workshop, confirma que tens:
+Completa esta página antes da sessão presencial ou antes de seguir os passos sozinho.
 
-- Um portátil com um navegador moderno
-- Ligação estável à Internet
-- Acesso ao site da disciplina e ao repositório
-- Eventuais apontamentos ou credenciais fornecidos pela equipa docente
+## Requisitos técnicos
 
-Durante a sessão, mantém a documentação aberta para acompanhares os passos e registares os resultados.
+| Área | O que precisas |
+| ---- | -------------- |
+| Browser | Chrome, Firefox, Edge ou equivalente recente com JavaScript |
+| Rede | Internet estável para o site, histórias Twine e verificação no LRS |
+| Dispositivo | Portátil recomendado |
+| Conta | Email para o questionário (uma submissão por conta quando o formulário estiver publicado) |
 
-## Lista de verificação
+Não são necessárias credenciais do LRS no browser; as statements passam pelo proxy do site.
 
-1. Confirmar acesso à página do workshop.
-2. Verificar se os links e as imagens carregam corretamente.
-3. Testar as ferramentas que serão usadas durante a sessão hands-on.
+## Conhecimentos
 
+- HTTP e JSON básicos
+- Seguir instruções técnicas passo a passo
 
+Não é obrigatório dominar xAPI antes do workshop.
+
+## Apresentação (provisória)
+
+Revê o PDF introdutório antes do bloco prático:
+
+- [Descarregar xAPI in Action (PDF, placeholder S1)](/hands-on-workshop/xapi-in-action.pdf)
+
+O grupo substituirá este ficheiro após a votação da apresentação final.
+
+## Seguinte
+
+- [Visão geral do workshop](/pt/docs/guides/hands-on-workshop/)
+- [Passos](/pt/docs/guides/steps/)
