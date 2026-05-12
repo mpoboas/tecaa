@@ -14,6 +14,40 @@ window.tecaaXapi = window.tecaaXapi || {};
 (function () {
   var PROXY_PATH = '/.netlify/functions/xapi-statement';
   var activityPath = '/stories/xapi-fundamentals/';
+  var LEARNER_STORAGE_KEY = 'tecaa_learner_name';
+
+  function slugLearnerName(name) {
+    return String(name || '').trim().toLowerCase().replace(/\s+/g, '.').replace(/[^a-z0-9._-]/g, '') || 'learner';
+  }
+  function readStoredLearnerName() {
+    try {
+      return sessionStorage.getItem(LEARNER_STORAGE_KEY) || '';
+    } catch (e) {
+      return '';
+    }
+  }
+  function storeLearnerName(name) {
+    var trimmed = String(name || '').trim();
+    if (!trimmed) return '';
+    try {
+      sessionStorage.setItem(LEARNER_STORAGE_KEY, trimmed);
+    } catch (err) {}
+    return trimmed;
+  }
+  if (!window.__tecaaLearnerInputBound) {
+    window.__tecaaLearnerInputBound = true;
+    document.addEventListener(
+      'input',
+      function (e) {
+        if (e.target && e.target.matches('tw-passage input[type="text"]')) {
+          storeLearnerName(e.target.value);
+        }
+      },
+      true
+    );
+  }
+  window.tecaaXapi.storeLearnerName = storeLearnerName;
+  window.tecaaXapi.readLearnerName = readStoredLearnerName;
 
   function anonId() {
     var k = 'tecaa-xapi-sid';
@@ -56,8 +90,12 @@ window.tecaaXapi = window.tecaaXapi || {};
     });
   };
   window.tecaaXapi.base = function (verbId, verbEn, extra) {
+    var learnerName = readStoredLearnerName();
+    var actor = learnerName
+      ? { name: learnerName, mbox: 'mailto:' + slugLearnerName(learnerName) + '@example.org' }
+      : { account: { homePage: pageOrigin() + '/', name: 'anon-' + anonId() } };
     var stmt = {
-      actor: { account: { homePage: pageOrigin() + '/', name: 'anon-' + anonId() } },
+      actor: actor,
       verb: { id: verbId, display: { 'en-US': verbEn } },
       object: {
         id: activityId(),
@@ -78,6 +116,22 @@ window.tecaaXapi = window.tecaaXapi || {};
   };
 })();</script><tw-passagedata pid="1" name="Start" tags="" position="25,25" size="100,100">(set: $score to 0)
 (set: $steps to 0)
+(set: $learner_name to &quot;&quot;)
+Welcome to **xAPI Fundamentals**: a short branching introduction to what xAPI is, how **statements** are built, how data reaches an **LRS**, and how xAPI compares to **SCORM**.
+
+Follow the links; a quick question checks whether you can spot the **verb** in an example statement.
+
+What is your name?
+
+(input: bind $learner_name)
+
+(live: 0.5s)[
+(if: (trimmed: $learner_name) is not &quot;&quot;)[
+[[Begin-&gt;WhatIsXAPI]]
+](else:)[
+Enter your name to continue.
+]
+]</tw-passagedata><tw-passagedata pid="2" name="WhatIsXAPI" tags="" position="150,25" size="100,100">(set: $steps to $steps + 1)
 &lt;script&gt;
 setTimeout(function () {
   if (!window.tecaaXapi) return;
@@ -88,20 +142,9 @@ setTimeout(function () {
       &#39;initialized&#39;
     )
   );
-}, 0);
-&lt;/script&gt;
-Welcome to **xAPI Fundamentals**: a short branching introduction to what xAPI is, how **statements** are built, how data reaches an **LRS**, and how xAPI compares to **SCORM**.
-
-Follow the links; a quick question checks whether you can spot the **verb** in an example statement.
-
-[[Begin-&gt;WhatIsXAPI]]</tw-passagedata><tw-passagedata pid="2" name="WhatIsXAPI" tags="" position="150,25" size="100,100">(set: $steps to $steps + 1)
-&lt;script&gt;
-setTimeout(function () {
-  if (window.tecaaXapi) {
-    window.tecaaXapi.post(
-      window.tecaaXapi.base(&#39;http://adlnet.gov/expapi/verbs/launched&#39;, &#39;launched&#39;)
-    );
-  }
+  window.tecaaXapi.post(
+    window.tecaaXapi.base(&#39;http://adlnet.gov/expapi/verbs/launched&#39;, &#39;launched&#39;)
+  );
 }, 0);
 &lt;/script&gt;
 The **Experience API (xAPI)** is a learning technology specification for the **collection, storage, and sharing of learning experiences** across systems and environments.

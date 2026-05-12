@@ -17,10 +17,38 @@
 
   var PROXY_PATH = '/.netlify/functions/xapi-statement';
   var sessionStart = null;
-  var actorId =
-    sessionStorage.getItem('tecaa_actor_optional') ||
-    ('anon-' + Math.random().toString(36).slice(2, 10));
-  sessionStorage.setItem('tecaa_actor_optional', actorId);
+  var LEARNER_STORAGE_KEY = 'tecaa_learner_name';
+
+  function slugLearnerName(name) {
+    return String(name || '').trim().toLowerCase().replace(/\s+/g, '.').replace(/[^a-z0-9._-]/g, '') || 'learner';
+  }
+  function readStoredLearnerName() {
+    try {
+      return sessionStorage.getItem(LEARNER_STORAGE_KEY) || '';
+    } catch (e) {
+      return '';
+    }
+  }
+  function storeLearnerName(name) {
+    var trimmed = String(name || '').trim();
+    if (!trimmed) return '';
+    try {
+      sessionStorage.setItem(LEARNER_STORAGE_KEY, trimmed);
+    } catch (err) {}
+    return trimmed;
+  }
+  if (!window.__tecaaLearnerInputBound) {
+    window.__tecaaLearnerInputBound = true;
+    document.addEventListener(
+      'input',
+      function (e) {
+        if (e.target && e.target.matches('tw-passage input[type="text"]')) {
+          storeLearnerName(e.target.value);
+        }
+      },
+      true
+    );
+  }
 
   function pageOrigin() {
     return typeof location !== 'undefined' && location.origin ? location.origin : '';
@@ -45,11 +73,15 @@
   };
 
   window.tecaaXapiOptional.base = function (verbId, verbDisplay, extra) {
+    var learnerName = readStoredLearnerName();
+    var actor = learnerName
+      ? { name: learnerName, mbox: 'mailto:' + slugLearnerName(learnerName) + '@example.org' }
+      : {
+          name: 'anon-' + Math.random().toString(36).slice(2, 10),
+          mbox: 'mailto:anon@example.org'
+        };
     var statement = {
-      actor: {
-        name: actorId,
-        mbox: 'mailto:' + actorId + '@example.org'
-      },
+      actor: actor,
       verb: {
         id: verbId,
         display: { 'en-US': verbDisplay }
@@ -86,6 +118,29 @@
   };
 })();</script><tw-passagedata pid="1" name="Start" tags="" position="25,25" size="100,100">(set: $score to 0)
   (set: $steps to 1)
+  (set: $learner_name to &quot;&quot;)
+
+  Welcome to the **xAPI Optional Fields Quiz**.
+
+  You will answer 4 quick questions:
+  - `result`
+  - `context`
+  - `timestamp`
+  - `authority`
+
+  Each correct answer gives 1 point.
+
+  What is your name?
+
+  (input: bind $learner_name)
+
+  (live: 0.5s)[
+  (if: (trimmed: $learner_name) is not &quot;&quot;)[
+  [[Begin quiz-&gt;Q1]]
+  ](else:)[
+  Enter your name to continue.
+  ]
+  ]</tw-passagedata><tw-passagedata pid="2" name="Q1" tags="" position="150,25" size="100,100">(set: $steps to $steps + 1)
 
   &lt;script&gt;
   if (window.tecaaXapiOptional) {
@@ -98,18 +153,6 @@
   );
   }
   &lt;/script&gt;
-
-  Welcome to the **xAPI Optional Fields Quiz**.
-
-  You will answer 4 quick questions:
-  - `result`
-  - `context`
-  - `timestamp`
-  - `authority`
-
-  Each correct answer gives 1 point.
-
-  [[Begin quiz-&gt;Q1]]</tw-passagedata><tw-passagedata pid="2" name="Q1" tags="" position="150,25" size="100,100">(set: $steps to $steps + 1)
 
   What is the best use case for `result`?
 
