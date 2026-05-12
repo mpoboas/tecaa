@@ -15,7 +15,7 @@ Segue os passos por ordem. Cada um aponta para uma história **Twine** e o **gui
 ## Antes de começar
 
 1. Conclui os [Pré-requisitos](/pt/docs/guides/prerequisites/).
-2. Revê o [PDF da apresentação](/hands-on-workshop/xapi-in-action.pdf) (deck provisório).
+2. Revê o [PDF da apresentação](/hands-on-workshop/xapi-in-action.pdf).
 3. Inicia sessão no email que usarás no [Questionário](/pt/docs/guides/questionnaire/).
 
 ## Passos

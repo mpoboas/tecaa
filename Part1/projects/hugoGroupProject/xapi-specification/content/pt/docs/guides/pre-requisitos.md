@@ -30,13 +30,11 @@ Não são necessárias credenciais do LRS no browser; as statements passam pelo 
 
 Não é obrigatório dominar xAPI antes do workshop.
 
-## Apresentação (provisória)
+## Apresentação
 
 Revê o PDF introdutório antes do bloco prático:
 
-- [Descarregar xAPI in Action (PDF, placeholder S1)](/hands-on-workshop/xapi-in-action.pdf)
-
-O grupo substituirá este ficheiro após a votação da apresentação final.
+- [Descarregar xAPI in Action (PDF)](/hands-on-workshop/xapi-in-action.pdf)
 
 ## Seguinte
 

@@ -15,7 +15,7 @@ Work through the steps in order. Each step links to a **Twine** story and the ma
 ## Before you start
 
 1. Finish the [Prerequisites](/docs/guides/prerequisites/) checklist.
-2. Skim the [presentation PDF](/hands-on-workshop/xapi-in-action.pdf) (placeholder deck).
+2. Skim the [presentation PDF](/hands-on-workshop/xapi-in-action.pdf).
 3. Sign in to the email account you will use for the [Questionnaire](/docs/guides/questionnaire/).
 
 ## Steps

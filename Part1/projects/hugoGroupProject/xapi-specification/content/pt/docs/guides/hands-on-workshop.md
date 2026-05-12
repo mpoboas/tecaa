@@ -14,8 +14,6 @@ Sessão prática sobre os guias **xAPI** e as histórias **Twine** já publicado
 
 ![Imagem motivacional do workshop](hands-on-workshop/hero.png)
 
-*Imagem provisória (candidato S1) até o grupo votar a imagem final.*
-
 ## Objetivos
 
 No final do workshop deves conseguir:
@@ -31,11 +29,9 @@ No final do workshop deves conseguir:
 2. [Passos](/pt/docs/guides/steps/) — quatro atividades Twine alinhadas com os guias xAPI.
 3. [Questionário](/pt/docs/guides/questionnaire/) — feedback no fim (opinião; a conclusão das tarefas verifica-se à parte via histórias e LRS).
 
-## Mockups (galeria provisória)
+## Mockup
 
-| Paragem de autocarro | Outdoor em autoestrada |
-| -------------------- | ---------------------- |
-| ![Mockup paragem](hands-on-workshop/mockup-bus-stop.png) | ![Mockup outdoor](hands-on-workshop/mockup-billboard.png) |
+![Mockup outdoor do workshop](hands-on-workshop/mockup.png)
 
 ---
 

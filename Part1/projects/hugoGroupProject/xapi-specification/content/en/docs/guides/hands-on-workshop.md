@@ -14,8 +14,6 @@ Hands-on session on the **xAPI** guides and **Twine** stories already published 
 
 ![Workshop promotional image](hands-on-workshop/hero.png)
 
-*Placeholder artwork (S1 candidate) until the group votes on the final motivational image.*
-
 ## Objectives
 
 By the end of the workshop you should be able to:
@@ -31,11 +29,9 @@ By the end of the workshop you should be able to:
 2. [Steps](/docs/guides/steps/) — four Twine activities mapped to the xAPI guides.
 3. [Questionnaire](/docs/guides/questionnaire/) — feedback after you finish (opinions only; task completion is checked separately via stories and LRS data).
 
-## Mockups (placeholder gallery)
+## Mockup
 
-| Bus stop | Highway billboard |
-| -------- | ----------------- |
-| ![Bus stop mockup](hands-on-workshop/mockup-bus-stop.png) | ![Billboard mockup](hands-on-workshop/mockup-billboard.png) |
+![Workshop billboard mockup](hands-on-workshop/mockup.png)
 
 ---
 

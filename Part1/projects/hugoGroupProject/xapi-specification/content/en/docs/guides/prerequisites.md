@@ -30,13 +30,11 @@ No LRS credentials are required in the browser; statements go through the site p
 
 Deep xAPI expertise is not required; the guides and stories introduce what you need.
 
-## Presentation (placeholder)
+## Presentation
 
 Review the introductory deck before the hands-on block:
 
-- [Download xAPI in Action (PDF, S1 placeholder)](/hands-on-workshop/xapi-in-action.pdf)
-
-The group will replace this file after voting on the final workshop presentation.
+- [Download xAPI in Action (PDF)](/hands-on-workshop/xapi-in-action.pdf)
 
 ## Next
 
